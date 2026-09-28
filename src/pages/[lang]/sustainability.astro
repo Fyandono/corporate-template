@@ -1,0 +1,11 @@
+---
+import { site } from '../../config/site';
+import MarkdownPageLayout from '../../layouts/MarkdownPageLayout.astro';
+import { getLangPaths, getLocale } from '../../i18n';
+
+// Modul opsional: aktifkan/nonaktifkan lewat site.features.sustainability
+export const getStaticPaths = () => (site.features.sustainability ? getLangPaths() : []);
+const lang = getLocale(Astro.params.lang);
+---
+
+<MarkdownPageLayout lang={lang} slug="sustainability" />

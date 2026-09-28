@@ -1,0 +1,10 @@
+name: Nama Komisaris Utama
+group: commissioner
+order: 1
+position:
+  id: Komisaris Utama
+  en: President Commissioner
+bio:
+  id: Menjabat sebagai Komisaris Utama sejak 2023. Sebelumnya menduduki berbagai posisi strategis di pemerintahan dan sektor swasta dengan pengalaman lebih dari 25 tahun.
+  en: Serving as President Commissioner since 2023. Previously held various strategic positions in government and the private sector with more than 25 years of experience.
+photo: ../../assets/placeholders/portrait.svg

@@ -1,0 +1,133 @@
+{
+  "meta": {
+    "defaultDescription": "Official company profile: about us, management, business lines, and contact information."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "management": "Management",
+    "business": "Business",
+    "governance": "Governance",
+    "sustainability": "Sustainability",
+    "news": "News",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie Policy",
+    "terms": "Terms of Use"
+  },
+  "common": {
+    "skipToContent": "Skip to main content",
+    "mainNav": "Main navigation",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language",
+    "switchLanguage": "Baca dalam Bahasa Indonesia",
+    "learnMore": "Learn more",
+    "readMore": "Read more",
+    "breadcrumb": "Breadcrumb",
+    "cookieSettings": "Cookie Settings",
+    "followUs": "Follow us",
+    "allRightsReserved": "All rights reserved.",
+    "lastUpdated": "Last updated",
+    "opensInNewTab": "(opens in a new tab)",
+    "scrollDown": "Scroll down"
+  },
+  "home": {
+    "title": "Home",
+    "heroEyebrow": "State-Owned Enterprise",
+    "heroTitle": "Building sustainable value for Indonesia",
+    "heroLead": "We manage the nation's strategic assets professionally, transparently, and accountably to deliver the greatest benefit to society and our stakeholders.",
+    "heroPrimary": "About Us",
+    "heroSecondary": "Business Lines",
+    "heroEstablished": "Established",
+    "heroLocation": "Jakarta, Indonesia",
+    "introEyebrow": "At a Glance",
+    "introTitle": "Five decades contributing to national development",
+    "introBody": "Since its founding, the company has continuously transformed into a resilient and adaptive entity. Through good governance and continuous innovation, we serve as an agent of development while creating economic value.",
+    "statsTitle": "The company in numbers",
+    "statsNote": "Figures as of 31 December 2025",
+    "businessEyebrow": "Business Lines",
+    "businessTitle": "A portfolio that powers the economy",
+    "statementEyebrow": "Vision",
+    "statement": "To be a world-class company that makes the nation proud and adds value for Indonesia.",
+    "newsEyebrow": "Latest",
+    "newsTitle": "News & press releases",
+    "ctaTitle": "Let's collaborate to build the nation",
+    "ctaBody": "Contact us for more information about the company and partnership opportunities.",
+    "ctaButton": "Contact Us"
+  },
+  "about": {
+    "title": "About Us",
+    "description": "Company profile, history, vision and mission, and corporate values.",
+    "lead": "A closer look at our journey, direction, and the values we uphold.",
+    "profileEyebrow": "Profile",
+    "profileTitle": "Who we are",
+    "profileBody": [
+      "The company is a State-Owned Enterprise operating in a nationally strategic sector. We carry out business activities that support government policy while generating sustainable economic value.",
+      "Backed by professional people and an operational network across Indonesia, we are committed to applying the principles of good corporate governance in every aspect of our business."
+    ],
+    "visionTitle": "Vision",
+    "missionTitle": "Mission",
+    "mission": [
+      "Provide quality products and services that benefit society.",
+      "Manage the business professionally, efficiently, and with a focus on sustainable growth.",
+      "Develop outstanding people with integrity.",
+      "Contribute to national development and the well-being of surrounding communities."
+    ],
+    "valuesEyebrow": "Corporate Values",
+    "valuesTitle": "The values we uphold",
+    "historyEyebrow": "History",
+    "historyTitle": "Our journey"
+  },
+  "management": {
+    "title": "Management",
+    "description": "The company's Board of Commissioners and Board of Directors.",
+    "lead": "Led by experienced professionals of integrity.",
+    "commissioners": "Board of Commissioners",
+    "directors": "Board of Directors",
+    "viewProfile": "View profile"
+  },
+  "business": {
+    "title": "Business Lines",
+    "description": "The company's business lines and portfolio.",
+    "lead": "An integrated business portfolio creating value for the nation."
+  },
+  "news": {
+    "title": "News",
+    "description": "The company's latest news and press releases.",
+    "lead": "The latest information and press releases from the company.",
+    "empty": "No news yet.",
+    "backToList": "Back to news"
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Head office address, phone, and email.",
+    "lead": "We are here to help. Please reach our head office through the channels below.",
+    "office": "Head Office",
+    "phone": "Phone",
+    "email": "Email",
+    "hours": "Office Hours",
+    "openMaps": "Open in Google Maps",
+    "mapAlt": "Illustrated map of the head office location"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "Sorry, the page you are looking for does not exist or has been moved.",
+    "back": "Back to home"
+  },
+  "consent": {
+    "title": "We use cookies",
+    "description": "We use analytics cookies to understand how visitors use this site and to improve our services. These cookies are only active with your consent.",
+    "acceptAll": "Accept all",
+    "rejectAll": "Reject all",
+    "settings": "Settings",
+    "save": "Save choices",
+    "close": "Close",
+    "preferencesTitle": "Cookie settings",
+    "necessaryTitle": "Strictly necessary cookies",
+    "necessaryDescription": "Required for the site to work, including remembering your cookie choices. They cannot be disabled.",
+    "analyticsTitle": "Analytics cookies",
+    "analyticsDescription": "Help us understand visitor numbers and the most visited pages through Google Analytics. Data is collected in aggregate.",
+    "moreInfo": "More information is available in our"
+  }
+}

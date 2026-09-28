@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import PageHero from '../../../components/sections/PageHero.tsx';
+import Container from '../../../components/ui/Container.astro';
+import { site } from '../../../config/site';
+import { getLocale, locales, localize, localizedPath, t } from '../../../i18n';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+// Modul opsional: site.features.businessDetailPages
+export async function getStaticPaths() {
+  if (!site.features.businessDetailPages) return [];
+  const entries = await getCollection('business');
+  return locales.flatMap((lang) =>
+    entries.map((entry) => ({ params: { lang, slug: entry.id }, props: { entry } })),
+  );
+}
+
+type Props = { entry: CollectionEntry<'business'> };
+const { entry } = Astro.props;
+const lang = getLocale(Astro.params.lang);
+const dict = t(lang);
+const title = localize(entry.data.title, lang);
+
+const breadcrumbs = [
+  { name: dict.nav.home, path: localizedPath(lang) },
+  { name: dict.business.title, path: localizedPath(lang, '/business') },
+  { name: title, path: localizedPath(lang, `/business/${entry.id}`) },
+];
+---
+
+<BaseLayout
+  lang={lang}
+  title={title}
+  description={localize(entry.data.summary, lang)}
+  breadcrumbs={breadcrumbs}
+>
+  <PageHero
+    title={title}
+    lead={localize(entry.data.summary, lang)}
+    breadcrumbs={breadcrumbs}
+    breadcrumbLabel={dict.common.breadcrumb}
+  />
+  <Container class="grid gap-12 py-20 md:py-28 lg:grid-cols-2">
+    <div class="rounded-card overflow-hidden" data-reveal>
+      <Image
+        src={entry.data.image}
+        alt={localize(entry.data.imageAlt, lang)}
+        widths={[600, 1200]}
+        sizes="(min-width: 1024px) 50vw, 100vw"
+        class="w-full"
+      />
+    </div>
+    <p class="text-lg leading-relaxed text-neutral-600" data-reveal>
+      {localize(entry.data.description, lang)}
+    </p>
+  </Container>
+</BaseLayout>

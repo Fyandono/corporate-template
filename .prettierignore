@@ -1,0 +1,11 @@
+dist
+.astro
+node_modules
+package-lock.json
+playwright-report
+test-results
+.lighthouseci
+.ds-sync
+ds-bundle
+.design-sync/pkg/dist
+.design-sync/.cache

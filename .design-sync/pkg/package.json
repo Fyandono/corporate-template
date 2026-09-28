@@ -1,0 +1,12 @@
+{
+  "name": "corporate-template-ui",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Paket pembungkus komponen React situs untuk sinkronisasi ke Claude Design. Dibangun oleh .design-sync/build.mjs.",
+  "type": "module",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "peerDependencies": {
+    "react": ">=19"
+  }
+}

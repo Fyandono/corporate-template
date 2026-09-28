@@ -1,0 +1,12 @@
+order: 4
+title: { id: Solusi Digital, en: Digital Solutions }
+summary:
+  id: Mengakselerasi transformasi digital.
+  en: Accelerating digital transformation.
+description:
+  id: Kami menghadirkan platform dan layanan digital yang meningkatkan efisiensi operasional serta kualitas layanan publik.
+  en: We deliver digital platforms and services that improve operational efficiency and the quality of public services.
+image: ../../assets/placeholders/business-4.svg
+imageAlt:
+  id: Ilustrasi lini bisnis solusi digital
+  en: Illustration of the digital solutions business line

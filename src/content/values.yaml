@@ -1,0 +1,36 @@
+- id: amanah
+  order: 1
+  title: { id: Amanah, en: Trustworthy }
+  description:
+    id: Memegang teguh kepercayaan yang diberikan.
+    en: We hold firmly to the trust placed in us.
+- id: kompeten
+  order: 2
+  title: { id: Kompeten, en: Competent }
+  description:
+    id: Terus belajar dan mengembangkan kapabilitas.
+    en: We keep learning and developing our capabilities.
+- id: harmonis
+  order: 3
+  title: { id: Harmonis, en: Harmonious }
+  description:
+    id: Saling peduli dan menghargai perbedaan.
+    en: We care for one another and respect differences.
+- id: loyal
+  order: 4
+  title: { id: Loyal, en: Loyal }
+  description:
+    id: Berdedikasi dan mengutamakan kepentingan bangsa dan negara.
+    en: We are dedicated and put the interests of the nation first.
+- id: adaptif
+  order: 5
+  title: { id: Adaptif, en: Adaptive }
+  description:
+    id: Terus berinovasi dan antusias menghadapi perubahan.
+    en: We keep innovating and embrace change with enthusiasm.
+- id: kolaboratif
+  order: 6
+  title: { id: Kolaboratif, en: Collaborative }
+  description:
+    id: Membangun kerja sama yang sinergis.
+    en: We build synergistic collaboration.

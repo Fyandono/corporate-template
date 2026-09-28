@@ -1,0 +1,37 @@
+---
+import { localeMeta, locales, t, type Locale } from '../../i18n';
+
+type Props = { lang: Locale; alternates: Record<Locale, string>; class?: string };
+const { lang, alternates, class: className } = Astro.props;
+---
+
+<nav aria-label={t(lang).common.language} class={className}>
+  <ul class="flex items-center gap-1 text-sm font-semibold">
+    {locales.map((locale, i) => (
+      <li class="flex items-center gap-1">
+        {i > 0 && (
+          <span aria-hidden="true" class="opacity-40">
+            /
+          </span>
+        )}
+        {locale === lang ? (
+          <span aria-current="true" class="px-1.5 py-1">
+            <abbr title={localeMeta[locale].name} class="no-underline">
+              {localeMeta[locale].label}
+            </abbr>
+          </span>
+        ) : (
+          <a
+            href={alternates[locale]}
+            hreflang={locale}
+            lang={locale}
+            aria-label={localeMeta[locale].name}
+            class="px-1.5 py-1 opacity-60 transition-opacity hover:opacity-100"
+          >
+            {localeMeta[locale].label}
+          </a>
+        )}
+      </li>
+    ))}
+  </ul>
+</nav>

@@ -1,0 +1,10 @@
+name: Nama Direktur Operasi
+group: director
+order: 3
+position:
+  id: Direktur Operasi
+  en: Director of Operations
+bio:
+  id: Menjabat sejak 2024. Memimpin keunggulan operasional di seluruh wilayah kerja perusahaan.
+  en: Serving since 2024. Leads operational excellence across all of the company's operating regions.
+photo: ../../assets/placeholders/portrait.svg

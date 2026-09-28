@@ -1,0 +1,10 @@
+name: Nama Direktur SDM
+group: director
+order: 4
+position:
+  id: Direktur Sumber Daya Manusia
+  en: Director of Human Capital
+bio:
+  id: Menjabat sejak 2024. Berfokus pada pengembangan talenta dan budaya kerja berbasis nilai.
+  en: Serving since 2024. Focused on talent development and a values-driven work culture.
+photo: ../../assets/placeholders/portrait.svg

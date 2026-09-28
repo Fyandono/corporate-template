@@ -1,0 +1,53 @@
+{
+  "projectId": "d31b7afe-ee99-45ef-9bcc-d37960851b9f",
+  "shape": "package",
+  "pkg": "corporate-template-ui",
+  "globalName": "CorporateUI",
+  "buildCmd": "node .design-sync/build.mjs",
+  "srcDir": "../../src/components",
+  "cssEntry": "dist/styles.css",
+  "extraFonts": [
+    "../../node_modules/@fontsource-variable/plus-jakarta-sans/index.css",
+    "../../node_modules/@fontsource-variable/newsreader/index.css"
+  ],
+  "overrides": {
+    "Hero": {
+      "cardMode": "column",
+      "viewport": "1280x1100"
+    },
+    "PageHero": {
+      "cardMode": "column"
+    },
+    "StatsBand": {
+      "cardMode": "column"
+    },
+    "CtaBand": {
+      "cardMode": "column"
+    },
+    "CinematicStatement": {
+      "cardMode": "column"
+    },
+    "Footer": {
+      "cardMode": "column"
+    },
+    "NewsCard": {
+      "cardMode": "column"
+    },
+    "BusinessCard": {
+      "cardMode": "column"
+    },
+    "Container": {
+      "cardMode": "column"
+    },
+    "SectionHeading": {
+      "cardMode": "column"
+    },
+    "ColumnLines": {
+      "cardMode": "column"
+    },
+    "NusantaraPattern": {
+      "cardMode": "column"
+    }
+  },
+  "readmeHeader": ".design-sync/conventions.md"
+}

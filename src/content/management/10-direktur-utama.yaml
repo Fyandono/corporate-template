@@ -1,0 +1,10 @@
+name: Nama Direktur Utama
+group: director
+order: 1
+position:
+  id: Direktur Utama
+  en: President Director
+bio:
+  id: Menjabat sebagai Direktur Utama sejak 2023. Memimpin transformasi perusahaan dengan fokus pada pertumbuhan berkelanjutan dan tata kelola yang baik.
+  en: Serving as President Director since 2023. Leading the company's transformation with a focus on sustainable growth and good governance.
+photo: ../../assets/placeholders/portrait.svg

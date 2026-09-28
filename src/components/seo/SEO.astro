@@ -1,0 +1,120 @@
+---
+import { site } from '../../config/site';
+import { defaultLocale, localeMeta, locales, localize, type Locale } from '../../i18n';
+import ogDefault from '../../assets/og-default.jpg';
+
+export type Breadcrumb = { name: string; path: string };
+
+type Props = {
+  lang: Locale;
+  title: string;
+  description: string;
+  alternates: Record<Locale, string>;
+  image?: string;
+  type?: 'website' | 'article';
+  breadcrumbs?: Breadcrumb[];
+  article?: { publishedTime: Date; modifiedTime?: Date };
+};
+
+const {
+  lang,
+  title,
+  description,
+  alternates,
+  image,
+  type = 'website',
+  breadcrumbs,
+  article,
+} = Astro.props;
+
+const siteUrl = Astro.site ?? new URL(Astro.url.origin);
+const abs = (path: string) => new URL(path, siteUrl).href;
+const canonical = abs(alternates[lang]);
+const ogImage = abs(image ?? ogDefault.src);
+const noindex = import.meta.env.PUBLIC_NOINDEX === 'true';
+
+const { address } = site.contact;
+const organization = {
+  '@type': 'Organization',
+  '@id': abs('/#organization'),
+  name: site.legalName,
+  alternateName: site.shortName,
+  url: abs(`/${defaultLocale}`),
+  logo: abs('/favicon.svg'),
+  foundingDate: String(site.foundingYear),
+  slogan: localize(site.tagline, lang),
+  email: site.contact.email,
+  telephone: site.contact.phone,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: address.street,
+    addressLocality: address.city,
+    addressRegion: address.region,
+    postalCode: address.postalCode,
+    addressCountry: address.country,
+  },
+  sameAs: site.social.map((s) => s.url),
+};
+
+const graph: object[] = [organization];
+if (breadcrumbs?.length) {
+  graph.push({
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((crumb, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: crumb.name,
+      item: abs(crumb.path),
+    })),
+  });
+}
+if (type === 'article' && article) {
+  graph.push({
+    '@type': 'NewsArticle',
+    headline: title,
+    description,
+    image: [ogImage],
+    datePublished: article.publishedTime.toISOString(),
+    dateModified: (article.modifiedTime ?? article.publishedTime).toISOString(),
+    inLanguage: lang,
+    publisher: { '@id': organization['@id'] },
+    mainEntityOfPage: canonical,
+  });
+}
+
+// Cegah `</script>` di dalam data keluar dari blok JSON-LD.
+const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(
+  /</g,
+  '\\u003c',
+);
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+{locales.map((l) => (
+  <link rel="alternate" hreflang={l} href={abs(alternates[l])} />
+))}
+<link rel="alternate" hreflang="x-default" href={abs(alternates[defaultLocale])} />
+
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content={site.shortName} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content={localeMeta[lang].ogLocale} />
+{locales
+  .filter((l) => l !== lang)
+  .map((l) => (
+    <meta property="og:locale:alternate" content={localeMeta[l].ogLocale} />
+  ))}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<script is:inline type="application/ld+json" set:html={jsonLd} />

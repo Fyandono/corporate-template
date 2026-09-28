@@ -1,0 +1,9 @@
+---
+import MarkdownPageLayout from '../../layouts/MarkdownPageLayout.astro';
+import { getLangPaths, getLocale } from '../../i18n';
+
+export const getStaticPaths = () => getLangPaths();
+const lang = getLocale(Astro.params.lang);
+---
+
+<MarkdownPageLayout lang={lang} slug="privacy" />

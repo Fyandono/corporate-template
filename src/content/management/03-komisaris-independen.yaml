@@ -1,0 +1,10 @@
+name: Nama Komisaris Independen
+group: commissioner
+order: 3
+position:
+  id: Komisaris Independen
+  en: Independent Commissioner
+bio:
+  id: Menjabat sebagai Komisaris Independen sejak 2024. Akademisi dan praktisi tata kelola perusahaan.
+  en: Serving as Independent Commissioner since 2024. Academic and corporate governance practitioner.
+photo: ../../assets/placeholders/portrait.svg

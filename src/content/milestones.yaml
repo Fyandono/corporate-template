@@ -1,0 +1,24 @@
+- id: '1975'
+  year: 1975
+  title: { id: Pendirian perusahaan, en: Company founded }
+  description:
+    id: Perusahaan didirikan berdasarkan Peraturan Pemerintah sebagai Perusahaan Umum.
+    en: The company was established by Government Regulation as a public corporation.
+- id: '1998'
+  year: 1998
+  title: { id: Menjadi Persero, en: Becoming a Persero }
+  description:
+    id: Status badan hukum berubah menjadi Perusahaan Perseroan (Persero).
+    en: The company's legal status changed to a limited liability state enterprise (Persero).
+- id: '2012'
+  year: 2012
+  title: { id: Ekspansi nasional, en: National expansion }
+  description:
+    id: Jaringan operasi diperluas hingga menjangkau seluruh provinsi di Indonesia.
+    en: The operating network expanded to reach every province in Indonesia.
+- id: '2024'
+  year: 2024
+  title: { id: Transformasi berkelanjutan, en: Sustainable transformation }
+  description:
+    id: Meluncurkan peta jalan transformasi digital dan keberlanjutan jangka panjang.
+    en: Launched a long-term digital transformation and sustainability roadmap.

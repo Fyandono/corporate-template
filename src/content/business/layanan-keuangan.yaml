@@ -1,0 +1,12 @@
+order: 3
+title: { id: Layanan Keuangan, en: Financial Services }
+summary:
+  id: Memperluas akses pembiayaan yang inklusif.
+  en: Expanding inclusive access to financing.
+description:
+  id: Melalui anak perusahaan, kami menyediakan solusi pembiayaan bagi pelaku usaha dan proyek pembangunan di seluruh Indonesia.
+  en: Through our subsidiaries, we provide financing solutions for businesses and development projects across Indonesia.
+image: ../../assets/placeholders/business-3.svg
+imageAlt:
+  id: Ilustrasi lini bisnis layanan keuangan
+  en: Illustration of the financial services business line

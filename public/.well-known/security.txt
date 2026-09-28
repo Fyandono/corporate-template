@@ -1,0 +1,5 @@
+# Ganti kontak & tanggal kedaluwarsa sesuai klien (RFC 9116). Perbarui sebelum Expires.
+Contact: mailto:security@example.co.id
+Expires: 2027-09-30T00:00:00.000Z
+Preferred-Languages: id, en
+Canonical: https://www.example.co.id/.well-known/security.txt

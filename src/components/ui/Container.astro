@@ -1,0 +1,15 @@
+---
+/**
+ * Pembungkus konten Astro. Komponen React memakai Container.tsx (class yang sama).
+ * Dipertahankan sebagai .astro karena slot Astro di dalam komponen React dibungkus elemen tambahan.
+ */
+import type { HTMLAttributes } from 'astro/types';
+import { containerClass } from './Container.tsx';
+
+type Props = HTMLAttributes<'div'> & { as?: 'div' | 'section' | 'header' | 'footer' };
+const { as: Tag = 'div', class: className, ...rest } = Astro.props;
+---
+
+<Tag class:list={[containerClass, className]} {...rest}>
+  <slot />
+</Tag>

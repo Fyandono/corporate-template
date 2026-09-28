@@ -1,0 +1,108 @@
+---
+import '../styles/global.css';
+import ConsentManager from '../components/layout/ConsentManager.astro';
+import Footer from '../components/layout/Footer.tsx';
+import Header from '../components/layout/Header.astro';
+import SkipLink from '../components/layout/SkipLink.astro';
+import SEO, { type Breadcrumb } from '../components/seo/SEO.astro';
+import { legalNav, mainNav } from '../config/navigation';
+import { site } from '../config/site';
+import { localize, localizedPath, locales, stripLocale, t, type Locale } from '../i18n';
+
+type Props = {
+  lang: Locale;
+  /** Judul halaman tanpa nama perusahaan; kosongkan untuk beranda. */
+  title?: string;
+  description?: string;
+  /** URL padanan di tiap bahasa. Default: path yang sama dengan prefix bahasa berbeda. */
+  alternates?: Record<Locale, string>;
+  image?: string;
+  type?: 'website' | 'article';
+  breadcrumbs?: Breadcrumb[];
+  article?: { publishedTime: Date; modifiedTime?: Date };
+};
+
+const { lang, title, description, image, type, breadcrumbs, article } = Astro.props;
+const dict = t(lang);
+
+const basePath = stripLocale(Astro.url.pathname);
+const alternates =
+  Astro.props.alternates ??
+  (Object.fromEntries(locales.map((l) => [l, localizedPath(l, basePath)])) as Record<
+    Locale,
+    string
+  >);
+
+const fullTitle = title
+  ? `${title} | ${site.shortName}`
+  : `${site.shortName} — ${site.tagline[lang]}`;
+const measurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID?.trim() ?? '';
+const { address } = site.contact;
+const navLinks = (items: typeof mainNav) =>
+  items.map((item) => ({ label: dict.nav[item.key], href: localizedPath(lang, item.path) }));
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#171717" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <SEO
+      lang={lang}
+      title={fullTitle}
+      description={description ?? dict.meta.defaultDescription}
+      alternates={alternates}
+      image={image}
+      type={type}
+      breadcrumbs={breadcrumbs}
+      article={article}
+    />
+    <!--
+      Menandai JS aktif agar elemen [data-reveal] disembunyikan sebelum dianimasikan.
+      Jika modul animasi tidak termuat dalam 3 detik, konten ditampilkan tanpa animasi.
+    -->
+    <script is:inline>
+      const root = document.documentElement;
+      root.classList.add('js');
+      setTimeout(() => {
+        if (!root.classList.contains('anim-ready')) root.classList.remove('js');
+      }, 3000);
+    </script>
+  </head>
+  <body>
+    <SkipLink label={dict.common.skipToContent} />
+    <Header lang={lang} alternates={alternates} />
+    <main id="main" tabindex="-1" class="outline-none">
+      <slot />
+    </main>
+    <Footer
+      brandName={site.shortName}
+      homeHref={localizedPath(lang)}
+      homeLabel={dict.nav.home}
+      tagline={localize(site.tagline, lang)}
+      legalName={site.legalName}
+      addressLines={[address.street, `${address.city}, ${address.region} ${address.postalCode}`]}
+      mainNav={navLinks(mainNav)}
+      mainNavLabel={dict.common.mainNav}
+      followUsLabel={dict.common.followUs}
+      social={site.social.map((item) => ({ label: item.name, href: item.url }))}
+      opensInNewTabLabel={dict.common.opensInNewTab}
+      phone={site.contact.phone}
+      phoneLabel={dict.contact.phone}
+      email={site.contact.email}
+      emailLabel={dict.contact.email}
+      copyright={`© ${new Date().getFullYear()} ${site.legalName}. ${dict.common.allRightsReserved}`}
+      legalNav={navLinks(legalNav)}
+      cookieSettingsLabel={measurementId ? dict.common.cookieSettings : undefined}
+    />
+    {measurementId && <ConsentManager lang={lang} measurementId={measurementId} />}
+    <script>
+      import '../scripts/animations';
+    </script>
+  </body>
+</html>

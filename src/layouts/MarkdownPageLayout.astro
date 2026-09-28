@@ -1,0 +1,48 @@
+---
+import { getEntry, render } from 'astro:content';
+import PageHero from '../components/sections/PageHero.tsx';
+import Container from '../components/ui/Container.astro';
+import { formatDate, localizedPath, t, type Locale } from '../i18n';
+import BaseLayout from './BaseLayout.astro';
+
+/** Halaman teks dari src/content/pages/<lang>/<slug>.md */
+type Props = { lang: Locale; slug: string };
+const { lang, slug } = Astro.props;
+const dict = t(lang);
+
+const entry = await getEntry('pages', `${lang}/${slug}`);
+if (!entry) throw new Error(`Konten tidak ditemukan: src/content/pages/${lang}/${slug}.md`);
+const { Content } = await render(entry);
+
+const breadcrumbs = [
+  { name: dict.nav.home, path: localizedPath(lang) },
+  { name: entry.data.title, path: localizedPath(lang, `/${slug}`) },
+];
+---
+
+<BaseLayout
+  lang={lang}
+  title={entry.data.title}
+  description={entry.data.description}
+  breadcrumbs={breadcrumbs}
+>
+  <PageHero
+    title={entry.data.title}
+    lead={entry.data.description}
+    breadcrumbs={breadcrumbs}
+    breadcrumbLabel={dict.common.breadcrumb}
+  />
+  <Container class="py-16 md:py-24">
+    <div class="mx-auto max-w-3xl">
+      <p class="text-sm text-neutral-500">
+        {dict.common.lastUpdated}:
+        <time datetime={entry.data.updatedAt.toISOString()}>
+          {formatDate(entry.data.updatedAt, lang)}
+        </time>
+      </p>
+      <div class="prose-content mt-8">
+        <Content />
+      </div>
+    </div>
+  </Container>
+</BaseLayout>

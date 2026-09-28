@@ -1,0 +1,239 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/plus-jakarta-sans';
+@import '@fontsource-variable/newsreader';
+
+/*
+ * DESIGN TOKENS — satu-satunya tempat mengatur brand.
+ * Ganti nilai di bawah untuk klien baru (lihat docs/BRANDING.md).
+ * Komponen hanya boleh memakai utilitas dari token ini (bg-primary-900, text-accent-500, dll.).
+ */
+@theme {
+  --font-sans: 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  /* Serif editorial untuk judul besar (h1, h2, pernyataan). */
+  --font-serif: 'Newsreader Variable', ui-serif, Georgia, serif;
+
+  --color-primary-50: #fafafa;
+  --color-primary-100: #f5f5f5;
+  --color-primary-200: #e5e5e5;
+  --color-primary-300: #d4d4d4;
+  --color-primary-400: #a3a3a3;
+  --color-primary-500: #737373;
+  --color-primary-600: #525252;
+  --color-primary-700: #404040;
+  --color-primary-800: #262626;
+  --color-primary-900: #171717;
+  --color-primary-950: #0a0a0a;
+
+  --color-accent-300: #e5e5e5;
+  --color-accent-400: #d4d4d4;
+  --color-accent-500: #a3a3a3;
+  --color-accent-600: #737373;
+  --color-accent-700: #525252; /* aksen untuk teks kecil di latar terang (kontras ≥ 4.5:1) */
+
+  /* Sudut tegas = kesan formal. */
+  --radius-card: 0.125rem;
+
+  /* Hierarki tipografi: display besar & ringan, label kecil berjarak lebar. */
+  --text-display: clamp(2.75rem, 1.4rem + 5.6vw, 7rem);
+  --text-display--line-height: 1;
+  --text-display--letter-spacing: -0.025em;
+  --text-headline: clamp(2rem, 1.25rem + 2.8vw, 3.75rem);
+  --text-headline--line-height: 1.1;
+  --text-headline--letter-spacing: -0.02em;
+  --text-statement: clamp(2rem, 1.1rem + 3.6vw, 4.75rem);
+  --text-statement--line-height: 1.15;
+  --text-statement--letter-spacing: -0.02em;
+  --text-lead: clamp(1.125rem, 1rem + 0.45vw, 1.375rem);
+  --text-lead--line-height: 1.65;
+  --text-eyebrow: 0.6875rem;
+  --text-eyebrow--line-height: 1;
+  --text-eyebrow--letter-spacing: 0.28em;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth bg-white text-neutral-700 antialiased;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-white font-sans;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-medium text-balance text-primary-900;
+  }
+  h1,
+  h2 {
+    @apply font-serif;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent-500;
+  }
+  ::selection {
+    @apply bg-accent-300 text-primary-950;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+/*
+ * Reveal on scroll.
+ * `html.js` ditambahkan oleh script kecil di <head>. Tanpa JS, atau jika modul animasi gagal dimuat
+ * dalam 3 detik, class dihapus sehingga konten tetap terlihat.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translate3d(0, 1.25rem, 0);
+    transition:
+      opacity 700ms var(--ease-out-expo),
+      transform 700ms var(--ease-out-expo);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .js [data-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/*
+ * Garis kolom arsitektural: 4 kolom di mobile, 12 kolom di desktop, sejajar dengan grid konten.
+ * Pakai di dalam <Container> berposisi absolut pada section gelap.
+ */
+@utility column-lines {
+  @apply grid h-full grid-cols-4 lg:grid-cols-12;
+  & > * {
+    @apply relative overflow-hidden border-l border-white/10;
+  }
+  & > :nth-child(n + 5) {
+    @apply hidden lg:block;
+  }
+  & > :nth-child(4) {
+    @apply border-r lg:border-r-0;
+  }
+  & > :nth-child(12) {
+    @apply border-r;
+  }
+  & > :nth-child(8) .column-sweep {
+    animation-delay: 3.5s;
+  }
+  & > :nth-child(11) .column-sweep {
+    animation-delay: 7s;
+  }
+}
+
+/* Cahaya tipis yang turun perlahan di beberapa garis kolom. Hanya transform/opacity. */
+@utility column-sweep {
+  @apply absolute inset-y-0 -left-px hidden w-px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 42%,
+    --alpha(var(--color-white) / 45%) 50%,
+    transparent 58%,
+    transparent 100%
+  );
+  @media (prefers-reduced-motion: no-preference) {
+    display: block;
+    animation: column-sweep 11s ease-in-out infinite;
+  }
+}
+
+@keyframes column-sweep {
+  from {
+    transform: translateY(-60%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  to {
+    transform: translateY(60%);
+    opacity: 0;
+  }
+}
+
+/* Pola Nusantara memudar ke satu sisi agar tidak bersaing dengan teks. */
+@utility pattern-fade-right {
+  mask-image: radial-gradient(ellipse 70% 90% at 100% 20%, black 0%, transparent 70%);
+}
+@utility pattern-fade-left {
+  mask-image: radial-gradient(ellipse 70% 90% at 0% 80%, black 0%, transparent 70%);
+}
+@utility pattern-fade-center {
+  mask-image: radial-gradient(ellipse 60% 80% at 50% 50%, black 0%, transparent 75%);
+}
+
+/* Konten Markdown (legal, tata kelola, berita). */
+@utility prose-content {
+  @apply text-lg leading-relaxed text-neutral-700;
+
+  & > * + * {
+    @apply mt-5;
+  }
+  & h2 {
+    @apply mt-12 text-2xl text-primary-900;
+  }
+  & h3 {
+    @apply mt-8 text-xl text-primary-900;
+  }
+  & a {
+    @apply text-primary-600 underline underline-offset-4 hover:text-primary-800;
+  }
+  & ul {
+    @apply list-disc space-y-2 pl-6;
+  }
+  & ol {
+    @apply list-decimal space-y-2 pl-6;
+  }
+  & strong {
+    @apply font-semibold text-primary-900;
+  }
+  & blockquote {
+    @apply border-l-4 border-accent-500 bg-primary-50 px-5 py-4 text-base;
+  }
+  /* Tabel tidak di-scroll horizontal; teks dibungkus agar muat di layar kecil. */
+  & table {
+    @apply w-full table-fixed border-collapse text-left text-sm sm:text-base;
+  }
+  & th {
+    @apply border-b-2 border-neutral-300 py-3 pr-3 align-bottom font-semibold wrap-break-word text-primary-900;
+  }
+  & td {
+    @apply border-b border-neutral-200 py-3 pr-3 align-top wrap-break-word;
+  }
+  & code {
+    @apply rounded bg-neutral-100 px-1.5 py-0.5 text-[0.9em];
+  }
+}
+
+/* Tema banner cookie (vanilla-cookieconsent) mengikuti token. */
+#cc-main {
+  --cc-font-family: var(--font-sans);
+  --cc-modal-border-radius: var(--radius-card);
+  --cc-btn-border-radius: var(--radius-card);
+  --cc-primary-color: var(--color-primary-900);
+  --cc-secondary-color: var(--color-neutral-600);
+  --cc-btn-primary-bg: var(--color-primary-900);
+  --cc-btn-primary-color: var(--color-white);
+  --cc-btn-primary-border-color: var(--color-primary-900);
+  --cc-btn-primary-hover-bg: var(--color-primary-700);
+  --cc-btn-primary-hover-border-color: var(--color-primary-700);
+  --cc-btn-secondary-bg: var(--color-primary-900);
+  --cc-btn-secondary-color: var(--color-white);
+  --cc-btn-secondary-border-color: var(--color-primary-900);
+  --cc-btn-secondary-hover-bg: var(--color-primary-700);
+  --cc-btn-secondary-hover-border-color: var(--color-primary-700);
+  --cc-toggle-on-bg: var(--color-primary-700);
+  --cc-link-color: var(--color-primary-600);
+}

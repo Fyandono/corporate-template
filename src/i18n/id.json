@@ -1,0 +1,133 @@
+{
+  "meta": {
+    "defaultDescription": "Profil resmi perusahaan: tentang kami, manajemen, lini bisnis, dan informasi kontak."
+  },
+  "nav": {
+    "home": "Beranda",
+    "about": "Tentang Kami",
+    "management": "Manajemen",
+    "business": "Bisnis",
+    "governance": "Tata Kelola",
+    "sustainability": "Keberlanjutan",
+    "news": "Berita",
+    "contact": "Kontak",
+    "privacy": "Kebijakan Privasi",
+    "cookies": "Kebijakan Cookie",
+    "terms": "Syarat Penggunaan"
+  },
+  "common": {
+    "skipToContent": "Lompat ke konten utama",
+    "mainNav": "Navigasi utama",
+    "openMenu": "Buka menu",
+    "closeMenu": "Tutup menu",
+    "language": "Bahasa",
+    "switchLanguage": "Baca dalam Bahasa Inggris",
+    "learnMore": "Selengkapnya",
+    "readMore": "Baca selengkapnya",
+    "breadcrumb": "Breadcrumb",
+    "cookieSettings": "Pengaturan Cookie",
+    "followUs": "Ikuti kami",
+    "allRightsReserved": "Hak cipta dilindungi undang-undang.",
+    "lastUpdated": "Terakhir diperbarui",
+    "opensInNewTab": "(membuka tab baru)",
+    "scrollDown": "Gulir ke bawah"
+  },
+  "home": {
+    "title": "Beranda",
+    "heroEyebrow": "Badan Usaha Milik Negara",
+    "heroTitle": "Membangun nilai berkelanjutan untuk Indonesia",
+    "heroLead": "Kami mengelola aset strategis negara secara profesional, transparan, dan akuntabel untuk memberikan manfaat terbaik bagi masyarakat dan pemangku kepentingan.",
+    "heroPrimary": "Tentang Kami",
+    "heroSecondary": "Lini Bisnis",
+    "heroEstablished": "Didirikan",
+    "heroLocation": "Jakarta, Indonesia",
+    "introEyebrow": "Sekilas Perusahaan",
+    "introTitle": "Lima dekade berkontribusi bagi pembangunan nasional",
+    "introBody": "Sejak didirikan, perusahaan terus bertransformasi menjadi entitas yang tangguh dan adaptif. Dengan tata kelola yang baik dan inovasi berkelanjutan, kami menjalankan peran sebagai agen pembangunan sekaligus penciptaan nilai ekonomi.",
+    "statsTitle": "Perusahaan dalam angka",
+    "statsNote": "Data per 31 Desember 2025",
+    "businessEyebrow": "Lini Bisnis",
+    "businessTitle": "Portofolio yang menopang perekonomian",
+    "statementEyebrow": "Visi",
+    "statement": "Menjadi perusahaan kelas dunia yang menjadi kebanggaan bangsa dan memberi nilai tambah bagi Indonesia.",
+    "newsEyebrow": "Kabar Terbaru",
+    "newsTitle": "Berita & siaran pers",
+    "ctaTitle": "Mari berkolaborasi membangun negeri",
+    "ctaBody": "Hubungi kami untuk informasi lebih lanjut mengenai perusahaan dan peluang kerja sama.",
+    "ctaButton": "Hubungi Kami"
+  },
+  "about": {
+    "title": "Tentang Kami",
+    "description": "Profil, sejarah, visi dan misi, serta nilai-nilai perusahaan.",
+    "lead": "Mengenal lebih dekat perjalanan, arah, dan nilai-nilai yang kami pegang.",
+    "profileEyebrow": "Profil",
+    "profileTitle": "Siapa kami",
+    "profileBody": [
+      "Perusahaan merupakan Badan Usaha Milik Negara yang bergerak di sektor strategis nasional. Kami berperan menjalankan kegiatan usaha yang mendukung kebijakan pemerintah sekaligus menghasilkan nilai ekonomi yang berkelanjutan.",
+      "Didukung oleh insan-insan profesional dan jaringan operasi di seluruh Indonesia, kami berkomitmen menerapkan prinsip tata kelola perusahaan yang baik dalam setiap aspek bisnis."
+    ],
+    "visionTitle": "Visi",
+    "missionTitle": "Misi",
+    "mission": [
+      "Menyediakan produk dan layanan berkualitas yang memberikan manfaat bagi masyarakat.",
+      "Mengelola bisnis secara profesional, efisien, dan berorientasi pada pertumbuhan berkelanjutan.",
+      "Mengembangkan sumber daya manusia yang unggul dan berintegritas.",
+      "Berkontribusi pada pembangunan nasional dan kesejahteraan lingkungan sekitar."
+    ],
+    "valuesEyebrow": "Nilai Perusahaan",
+    "valuesTitle": "Nilai-nilai yang kami pegang",
+    "historyEyebrow": "Sejarah",
+    "historyTitle": "Perjalanan kami"
+  },
+  "management": {
+    "title": "Manajemen",
+    "description": "Susunan Dewan Komisaris dan Direksi perusahaan.",
+    "lead": "Dipimpin oleh jajaran profesional yang berpengalaman dan berintegritas.",
+    "commissioners": "Dewan Komisaris",
+    "directors": "Direksi",
+    "viewProfile": "Lihat profil"
+  },
+  "business": {
+    "title": "Lini Bisnis",
+    "description": "Lini bisnis dan portofolio perusahaan.",
+    "lead": "Portofolio usaha yang saling terintegrasi untuk menciptakan nilai bagi negara."
+  },
+  "news": {
+    "title": "Berita",
+    "description": "Berita dan siaran pers terbaru perusahaan.",
+    "lead": "Informasi dan siaran pers terbaru dari perusahaan.",
+    "empty": "Belum ada berita.",
+    "backToList": "Kembali ke daftar berita"
+  },
+  "contact": {
+    "title": "Kontak",
+    "description": "Alamat, telepon, dan email kantor pusat perusahaan.",
+    "lead": "Kami siap membantu. Silakan hubungi kantor pusat kami melalui kanal berikut.",
+    "office": "Kantor Pusat",
+    "phone": "Telepon",
+    "email": "Email",
+    "hours": "Jam Operasional",
+    "openMaps": "Buka di Google Maps",
+    "mapAlt": "Ilustrasi peta lokasi kantor pusat"
+  },
+  "notFound": {
+    "title": "Halaman tidak ditemukan",
+    "body": "Maaf, halaman yang Anda cari tidak tersedia atau telah dipindahkan.",
+    "back": "Kembali ke beranda"
+  },
+  "consent": {
+    "title": "Kami menggunakan cookie",
+    "description": "Kami menggunakan cookie analitik untuk memahami cara pengunjung menggunakan situs ini dan meningkatkan layanan kami. Cookie ini hanya aktif jika Anda menyetujuinya.",
+    "acceptAll": "Terima semua",
+    "rejectAll": "Tolak semua",
+    "settings": "Pengaturan",
+    "save": "Simpan pilihan",
+    "close": "Tutup",
+    "preferencesTitle": "Pengaturan cookie",
+    "necessaryTitle": "Cookie yang diperlukan",
+    "necessaryDescription": "Diperlukan agar situs berfungsi, termasuk menyimpan pilihan cookie Anda. Tidak dapat dinonaktifkan.",
+    "analyticsTitle": "Cookie analitik",
+    "analyticsDescription": "Membantu kami memahami jumlah pengunjung dan halaman yang paling sering dibuka melalui Google Analytics. Data dikumpulkan secara agregat.",
+    "moreInfo": "Informasi lebih lanjut ada di"
+  }
+}

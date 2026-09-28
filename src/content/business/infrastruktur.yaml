@@ -1,0 +1,12 @@
+order: 2
+title: { id: Infrastruktur, en: Infrastructure }
+summary:
+  id: Membangun konektivitas yang menggerakkan ekonomi.
+  en: Building connectivity that moves the economy.
+description:
+  id: Kami mengembangkan dan mengoperasikan infrastruktur strategis yang meningkatkan konektivitas antarwilayah dan daya saing nasional.
+  en: We develop and operate strategic infrastructure that improves inter-regional connectivity and national competitiveness.
+image: ../../assets/placeholders/business-2.svg
+imageAlt:
+  id: Ilustrasi lini bisnis infrastruktur
+  en: Illustration of the infrastructure business line

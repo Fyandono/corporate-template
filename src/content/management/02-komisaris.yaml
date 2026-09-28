@@ -1,0 +1,10 @@
+name: Nama Komisaris
+group: commissioner
+order: 2
+position:
+  id: Komisaris
+  en: Commissioner
+bio:
+  id: Menjabat sebagai Komisaris sejak 2022. Berpengalaman di bidang keuangan dan audit.
+  en: Serving as Commissioner since 2022. Experienced in finance and audit.
+photo: ../../assets/placeholders/portrait.svg

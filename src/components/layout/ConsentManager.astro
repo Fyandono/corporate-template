@@ -1,0 +1,20 @@
+---
+import { localizedPath, t, type Locale } from '../../i18n';
+
+type Props = { lang: Locale; measurementId: string };
+const { lang, measurementId } = Astro.props;
+const dict = t(lang);
+---
+
+<div
+  id="consent-config"
+  hidden
+  data-ga-id={measurementId}
+  data-strings={JSON.stringify(dict.consent)}
+  data-cookies-url={localizedPath(lang, '/cookies')}
+  data-cookies-label={dict.nav.cookies}
+></div>
+
+<script>
+  import '../../scripts/consent';
+</script>

@@ -1,0 +1,10 @@
+name: Nama Direktur Keuangan
+group: director
+order: 2
+position:
+  id: Direktur Keuangan & Manajemen Risiko
+  en: Director of Finance & Risk Management
+bio:
+  id: Menjabat sejak 2023. Berpengalaman lebih dari 20 tahun di industri perbankan dan pasar modal.
+  en: Serving since 2023. More than 20 years of experience in banking and capital markets.
+photo: ../../assets/placeholders/portrait.svg
