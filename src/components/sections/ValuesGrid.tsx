@@ -4,16 +4,26 @@ import SectionHeading from '../ui/SectionHeading';
 export type ValueItem = { title: string; description: string };
 
 export type ValuesGridProps = {
+  /** Anchor untuk navigasi one-page. */
+  id?: string;
+  /** id judul untuk `aria-labelledby`; unik per halaman. Default: `${id}-title`. */
+  titleId?: string;
   eyebrow: string;
   title: string;
   values: ValueItem[];
 };
 
 /** Nilai perusahaan (mis. AKHLAK) dalam grid berbatas garis rambut. */
-export default function ValuesGrid({ eyebrow, title, values }: ValuesGridProps) {
+export default function ValuesGrid({
+  eyebrow,
+  title,
+  values,
+  id,
+  titleId = `${id ?? 'values'}-title`,
+}: ValuesGridProps) {
   return (
-    <Section spacing="compact" labelledBy="values-title">
-      <SectionHeading id="values-title" eyebrow={eyebrow} title={title} />
+    <Section id={id} spacing="compact" labelledBy={titleId}>
+      <SectionHeading id={titleId} eyebrow={eyebrow} title={title} />
       <ul
         className="mt-12 grid gap-px overflow-hidden rounded-card border border-neutral-200 bg-neutral-200 sm:grid-cols-2 lg:grid-cols-3"
         data-reveal-group

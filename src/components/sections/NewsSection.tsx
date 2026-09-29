@@ -5,6 +5,8 @@ import NewsCard, { type NewsCardProps } from './NewsCard';
 export type NewsSectionProps = {
   /** Anchor untuk navigasi one-page. */
   id?: string;
+  /** id judul untuk `aria-labelledby`; unik per halaman. Default: `${id}-title`. */
+  titleId?: string;
   index?: string;
   eyebrow: string;
   title: string;
@@ -16,13 +18,13 @@ export type NewsSectionProps = {
 /** Berita terbaru dalam grid tiga kolom. */
 export default function NewsSection({
   id,
+  titleId = `${id ?? 'news'}-title`,
   index,
   eyebrow,
   title,
   cards,
   emptyLabel,
 }: NewsSectionProps) {
-  const titleId = `${id ?? 'news'}-title`;
   return (
     <Section id={id} labelledBy={titleId}>
       <SectionHeading id={titleId} index={index} eyebrow={eyebrow} title={title} />

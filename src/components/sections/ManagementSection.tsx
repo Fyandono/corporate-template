@@ -12,6 +12,8 @@ export type ManagementGroup = {
 export type ManagementSectionProps = {
   /** Anchor untuk navigasi one-page. */
   id?: string;
+  /** id judul untuk `aria-labelledby`; unik per halaman. Default: `${id}-title`. */
+  titleId?: string;
   index?: string;
   eyebrow: string;
   title: string;
@@ -22,13 +24,13 @@ export type ManagementSectionProps = {
 /** Dewan Komisaris & Direksi, dikelompokkan dengan label bergaris. */
 export default function ManagementSection({
   id,
+  titleId = `${id ?? 'management'}-title`,
   index,
   eyebrow,
   title,
   groups,
   viewProfileLabel,
 }: ManagementSectionProps) {
-  const titleId = `${id ?? 'management'}-title`;
   return (
     <Section id={id} labelledBy={titleId}>
       <SectionHeading id={titleId} index={index} eyebrow={eyebrow} title={title} />

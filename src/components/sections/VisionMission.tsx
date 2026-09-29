@@ -2,6 +2,10 @@ import Eyebrow from '../ui/Eyebrow';
 import Section from '../ui/Section';
 
 export type VisionMissionProps = {
+  /** Anchor untuk navigasi one-page. */
+  id?: string;
+  /** id judul untuk `aria-labelledby`; unik per halaman. Default: `${id}-title`. */
+  titleId?: string;
   visionTitle: string;
   vision: string;
   missionTitle: string;
@@ -14,16 +18,19 @@ export default function VisionMission({
   vision,
   missionTitle,
   mission,
+  id,
+  titleId = `${id ?? 'vision'}-title`,
 }: VisionMissionProps) {
   return (
     <Section
       tone="dark"
       spacing="compact"
-      labelledBy="vision-title"
+      id={id}
+      labelledBy={titleId}
       containerClassName="grid gap-16 lg:grid-cols-2"
     >
       <div data-reveal>
-        <Eyebrow as="h2" id="vision-title" tone="dark">
+        <Eyebrow as="h2" id={titleId} tone="dark">
           {visionTitle}
         </Eyebrow>
         <p className="mt-6 text-statement font-medium text-white">{vision}</p>

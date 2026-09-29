@@ -21,6 +21,7 @@ jobs:
       - run: npm audit --audit-level=high --omit=dev
       - run: npm run lint
       - run: npm run check
+      - run: npm run test:unit
 
       # Build dengan GA ID dummy agar tes banner cookie ikut berjalan.
       - run: npm run build

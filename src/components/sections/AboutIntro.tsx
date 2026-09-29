@@ -2,6 +2,10 @@ import Section from '../ui/Section';
 import SectionHeading from '../ui/SectionHeading';
 
 export type AboutIntroProps = {
+  /** Anchor untuk navigasi one-page. */
+  id?: string;
+  /** id judul untuk `aria-labelledby`; unik per halaman. Default: `${id}-title`. */
+  titleId?: string;
   /** Nomor urut section, mis. "01". */
   index?: string;
   eyebrow: string;
@@ -10,8 +14,6 @@ export type AboutIntroProps = {
   lead: string;
   /** Paragraf profil lanjutan. */
   body?: string[];
-  /** id judul (untuk `aria-labelledby`). */
-  titleId?: string;
 };
 
 /** Pembuka profil perusahaan: judul besar di kiri, lead + paragraf di kanan. */
@@ -21,10 +23,12 @@ export default function AboutIntro({
   title,
   lead,
   body = [],
-  titleId = 'about-title',
+  id,
+  titleId = `${id ?? 'about'}-title`,
 }: AboutIntroProps) {
   return (
     <Section
+      id={id}
       labelledBy={titleId}
       spacing="none"
       containerClassName="grid gap-12 pt-section pb-section-compact md:pt-section-lg md:pb-section-compact-lg lg:grid-cols-12"

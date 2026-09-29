@@ -10,12 +10,14 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check",
-    "lint": "eslint . && prettier --check .",
+    "check": "astro check && tsc -p .design-sync/previews",
+    "lint": "eslint . && prettier --check . && node scripts/check-design-tokens.mjs",
     "format": "prettier --write .",
-    "test": "playwright test",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "vitest run",
+    "test:e2e": "playwright test",
     "images": "node scripts/generate-images.mjs",
-    "test:ci": "npm run build && playwright test"
+    "test:ci": "npm run build && npm test"
   },
   "dependencies": {
     "@astrojs/react": "^7.0.0",
@@ -44,6 +46,7 @@
     "prettier-plugin-astro": "^1.1.0",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.70.1"
+    "typescript-eslint": "^8.70.1",
+    "vitest": "^5.0.2"
   }
 }

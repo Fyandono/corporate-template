@@ -1,0 +1,35 @@
+---
+/**
+ * Menu anchor section (one-page), dipakai header desktop (`bar`) dan menu mobile (`drawer`).
+ * `data-section-link` dibaca scroll-spy di src/scripts/header.ts untuk `aria-current`.
+ */
+import { mainNav, sectionHref } from '../../config/navigation';
+import { t, type Locale } from '../../i18n';
+
+type Props = { lang: Locale; variant: 'bar' | 'drawer'; class?: string };
+const { lang, variant, class: className } = Astro.props;
+const dict = t(lang);
+
+const styles = {
+  bar: {
+    list: 'flex items-center gap-1',
+    link: 'current:after:bg-accent-500 relative block px-3 py-2 text-small font-medium opacity-85 transition-opacity after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:bg-transparent hover:opacity-100 current:opacity-100',
+  },
+  drawer: {
+    list: 'divide-y divide-white/10 border-y border-white/10',
+    link: 'current:text-accent-400 flex min-h-14 items-center text-body-lg font-medium',
+  },
+}[variant];
+---
+
+<nav aria-label={dict.common.mainNav} class={className}>
+  <ul class={styles.list}>
+    {mainNav.map((item) => (
+      <li>
+        <a href={sectionHref(lang, item.id)} data-section-link={item.id} class={styles.link}>
+          {dict.nav[item.key]}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>

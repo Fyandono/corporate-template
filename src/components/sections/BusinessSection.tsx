@@ -5,6 +5,8 @@ import BusinessCard, { type BusinessCardProps } from './BusinessCard';
 export type BusinessSectionProps = {
   /** Anchor untuk navigasi one-page. */
   id?: string;
+  /** id judul untuk `aria-labelledby`; unik per halaman. Default: `${id}-title`. */
+  titleId?: string;
   index?: string;
   eyebrow: string;
   title: string;
@@ -15,13 +17,13 @@ export type BusinessSectionProps = {
 /** Grid lini bisnis / portofolio. */
 export default function BusinessSection({
   id,
+  titleId = `${id ?? 'business'}-title`,
   index,
   eyebrow,
   title,
   lead,
   cards,
 }: BusinessSectionProps) {
-  const titleId = `${id ?? 'business'}-title`;
   return (
     <Section id={id} tone="muted" labelledBy={titleId}>
       <SectionHeading id={titleId} index={index} eyebrow={eyebrow} title={title} lead={lead} />

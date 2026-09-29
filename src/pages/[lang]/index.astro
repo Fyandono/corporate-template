@@ -1,6 +1,4 @@
 ---
-import { getCollection, getEntry, render } from 'astro:content';
-import mapImage from '../../assets/placeholders/map.svg';
 import AboutIntro from '../../components/sections/AboutIntro.tsx';
 import BusinessSection from '../../components/sections/BusinessSection.tsx';
 import ContactSection from '../../components/sections/ContactSection.tsx';
@@ -14,88 +12,33 @@ import ValuesGrid from '../../components/sections/ValuesGrid.tsx';
 import VisionMission from '../../components/sections/VisionMission.tsx';
 import { sectionHref, sectionIndex } from '../../config/navigation';
 import { site } from '../../config/site';
-import { getLangPaths, getLocale, localize, t } from '../../i18n';
-import { businessCardProps, newsCardProps, personCardProps } from '../../lib/cards';
-import { responsiveImage } from '../../lib/image';
+import { getLangPaths, getLocale, t } from '../../i18n';
+import { loadAbout } from '../../lib/sections/about';
+import { loadBusiness } from '../../lib/sections/business';
+import { loadContact } from '../../lib/sections/contact';
+import { loadManagement } from '../../lib/sections/management';
+import { loadNews } from '../../lib/sections/news';
+import { loadProseSections } from '../../lib/sections/prose';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 /**
- * Halaman utama one-page: hanya menyiapkan data (konten, i18n, site.ts) lalu menyusun section.
- * `id` setiap section = anchor di menu (src/config/navigation.ts); section opsional mengikuti
+ * Halaman utama one-page — hanya komposisi. Data tiap section disiapkan di src/lib/sections/;
+ * `id` & nomor section berasal dari menu (src/config/navigation.ts). Section opsional mengikuti
  * `site.features`.
  */
 export const getStaticPaths = () => getLangPaths();
 const lang = getLocale(Astro.params.lang);
 const dict = t(lang);
-const { home, about, management, business, news, contact } = dict;
-const byOrder = <T extends { data: { order: number } }>(a: T, b: T) => a.data.order - b.data.order;
+const { home } = dict;
 
-const stats = site.stats.map((stat) => ({
-  value: stat.value,
-  label: localize(stat.label, lang),
-  suffix: stat.suffix && localize(stat.suffix, lang),
-}));
-const values = (await getCollection('values')).sort(byOrder).map((v) => ({
-  title: localize(v.data.title, lang),
-  description: localize(v.data.description, lang),
-}));
-const milestones = (await getCollection('milestones'))
-  .sort((a, b) => a.data.year - b.data.year)
-  .map((m) => ({
-    year: m.data.year,
-    title: localize(m.data.title, lang),
-    description: localize(m.data.description, lang),
-  }));
-
-const people = (await getCollection('management')).sort(byOrder);
-const managementGroups = await Promise.all(
-  [
-    { key: 'commissioner', title: management.commissioners },
-    { key: 'director', title: management.directors },
-  ].map(async (group) => ({
-    title: group.title,
-    people: await Promise.all(
-      people.filter((p) => p.data.group === group.key).map((p) => personCardProps(p, lang)),
-    ),
-  })),
-);
-
-const businessCards = await Promise.all(
-  (await getCollection('business')).sort(byOrder).map((e, i) => businessCardProps(e, lang, i)),
-);
-
-// Section teks dari src/content/pages/<lang>/<key>.md
-const proseSections = await Promise.all(
-  (['governance', 'sustainability'] as const)
-    .filter((key) => site.features[key])
-    .map(async (key) => {
-      const entry = await getEntry('pages', `${lang}/${key}`);
-      if (!entry) throw new Error(`Konten tidak ditemukan: src/content/pages/${lang}/${key}.md`);
-      const { Content } = await render(entry);
-      return { key, title: entry.data.title, lead: entry.data.description, Content };
-    }),
-);
-
-const newsCards = site.features.news
-  ? await Promise.all(
-      (await getCollection('news', (e) => e.id.startsWith(`${lang}/`) && !e.data.draft))
-        .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-        .slice(0, 3)
-        .map((entry) => newsCardProps(entry, lang)),
-    )
-  : [];
-
-const { address, phone, email, hours, mapsUrl } = site.contact;
-const contactDetails = [
-  { label: contact.phone, value: phone, href: `tel:${phone.replace(/\s/g, '')}` },
-  { label: contact.email, value: email, href: `mailto:${email}` },
-  { label: contact.hours, value: localize(hours, lang) },
-];
-const contactMap = {
-  image: await responsiveImage(mapImage, contact.mapAlt, '(min-width: 1024px) 50vw, 100vw'),
-  href: mapsUrl,
-  label: contact.openMaps,
-};
+const [about, management, business, proseSections, news, contact] = await Promise.all([
+  loadAbout(lang),
+  loadManagement(lang),
+  loadBusiness(lang),
+  loadProseSections(lang),
+  site.features.news ? loadNews(lang) : undefined,
+  loadContact(lang),
+]);
 ---
 
 <BaseLayout lang={lang}>
@@ -110,77 +53,29 @@ const contactMap = {
   />
 
   <div id="about">
-    <AboutIntro
-      index={sectionIndex('about')}
-      eyebrow={dict.nav.about}
-      title={about.title}
-      lead={about.lead}
-      body={about.body}
-    />
-    <StatsBand title={home.statsTitle} note={home.statsNote} stats={stats} locale={lang} />
-    <VisionMission
-      visionTitle={about.visionTitle}
-      vision={about.vision}
-      missionTitle={about.missionTitle}
-      mission={about.mission}
-    />
-    <ValuesGrid eyebrow={about.valuesEyebrow} title={about.valuesTitle} values={values} />
-    <Timeline eyebrow={about.historyEyebrow} title={about.historyTitle} milestones={milestones} />
+    <AboutIntro index={sectionIndex('about')} {...about.intro} />
+    <StatsBand {...about.stats} />
+    <VisionMission {...about.visionMission} />
+    <ValuesGrid {...about.values} />
+    <Timeline {...about.timeline} />
   </div>
 
-  <ManagementSection
-    id="management"
-    index={sectionIndex('management')}
-    eyebrow={dict.nav.management}
-    title={management.title}
-    groups={managementGroups}
-    viewProfileLabel={management.viewProfile}
-  />
+  <ManagementSection id="management" index={sectionIndex('management')} {...management} />
 
-  <BusinessSection
-    id="business"
-    index={sectionIndex('business')}
-    eyebrow={dict.nav.business}
-    title={business.title}
-    lead={business.lead}
-    cards={businessCards}
-  />
+  <BusinessSection id="business" index={sectionIndex('business')} {...business} />
 
-  {proseSections.map(({ key, title, lead, Content }, i) => (
+  {proseSections.map(({ key, Content, ...section }, i) => (
     <ProseSection
       id={key}
       index={sectionIndex(key)}
-      eyebrow={dict.nav[key]}
-      title={title}
-      lead={lead}
       tone={i % 2 === 1 ? 'muted' : 'light'}
+      {...section}
     >
       <Content />
     </ProseSection>
   ))}
 
-  {site.features.news && (
-    <NewsSection
-      id="news"
-      index={sectionIndex('news')}
-      eyebrow={dict.nav.news}
-      title={news.title}
-      cards={newsCards}
-      emptyLabel={news.empty}
-    />
-  )}
+  {news && <NewsSection id="news" index={sectionIndex('news')} {...news} />}
 
-  <ContactSection
-    id="contact"
-    index={sectionIndex('contact')}
-    eyebrow={dict.nav.contact}
-    title={contact.title}
-    lead={contact.lead}
-    officeTitle={contact.office}
-    legalName={site.legalName}
-    addressLines={[address.street, `${address.city}, ${address.region} ${address.postalCode}`]}
-    details={contactDetails}
-    map={contactMap}
-    opensInNewTabLabel={dict.common.opensInNewTab}
-  />
+  <ContactSection id="contact" index={sectionIndex('contact')} {...contact} />
 </BaseLayout>

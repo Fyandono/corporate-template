@@ -1,10 +1,10 @@
 ---
-import { mainNav, sectionHref } from '../../config/navigation';
 import { localizedPath, t, type Locale } from '../../i18n';
 import { site } from '../../config/site';
 import Container from '../ui/Container.astro';
 import Logo from '../ui/Logo.tsx';
 import LanguageSwitcher from './LanguageSwitcher.astro';
+import SectionNav from './SectionNav.astro';
 
 type Props = { lang: Locale; alternates: Record<Locale, string> };
 const { lang, alternates } = Astro.props;
@@ -20,21 +20,7 @@ const dict = t(lang);
       <Logo name={site.shortName} />
     </a>
 
-    <nav aria-label={dict.common.mainNav} class="hidden lg:block">
-      <ul class="flex items-center gap-1">
-        {mainNav.map((item) => (
-          <li>
-            <a
-              href={sectionHref(lang, item.id)}
-              data-section-link={item.id}
-              class="current:after:bg-accent-500 relative block px-3 py-2 text-small font-medium opacity-85 transition-opacity after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:bg-transparent hover:opacity-100 current:opacity-100"
-            >
-              {dict.nav[item.key]}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <SectionNav lang={lang} variant="bar" class="hidden lg:block" />
 
     <div class="flex items-center gap-4">
       <LanguageSwitcher lang={lang} alternates={alternates} />
@@ -72,21 +58,7 @@ const dict = t(lang);
       </svg>
     </button>
   </div>
-  <nav aria-label={dict.common.mainNav} class="px-4 pt-4 sm:px-6">
-    <ul class="divide-y divide-white/10 border-y border-white/10">
-      {mainNav.map((item) => (
-        <li>
-          <a
-            href={sectionHref(lang, item.id)}
-            data-section-link={item.id}
-            class="current:text-accent-400 flex min-h-14 items-center text-body-lg font-medium"
-          >
-            {dict.nav[item.key]}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </nav>
+  <SectionNav lang={lang} variant="drawer" class="px-4 pt-4 sm:px-6" />
 </dialog>
 
 <script>

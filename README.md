@@ -21,17 +21,18 @@ npm run dev               # http://localhost:4321/id
 
 ## Perintah
 
-| Perintah          | Fungsi                                                    |
-| ----------------- | --------------------------------------------------------- |
-| `npm run dev`     | Server pengembangan dengan hot reload                     |
-| `npm run build`   | Build situs statis ke `dist/`                             |
-| `npm run preview` | Menyajikan `dist/` secara lokal                           |
-| `npm run check`   | Typecheck (TypeScript + Astro + skema konten)             |
-| `npm run lint`    | ESLint + cek format Prettier                              |
-| `npm run format`  | Merapikan format semua file                               |
-| `npm run test`    | Tes E2E, aksesibilitas, link, dan consent (butuh `dist/`) |
-| `npm run test:ci` | Build lalu tes                                            |
-| `npm run images`  | Membuat ulang `apple-touch-icon.png` dan OG image         |
+| Perintah            | Fungsi                                                                |
+| ------------------- | --------------------------------------------------------------------- |
+| `npm run dev`       | Server pengembangan dengan hot reload                                 |
+| `npm run build`     | Build situs statis ke `dist/`                                         |
+| `npm run preview`   | Menyajikan `dist/` secara lokal                                       |
+| `npm run check`     | Typecheck (TypeScript + Astro + skema konten + preview Claude Design) |
+| `npm run lint`      | ESLint + cek format Prettier + cek design token                       |
+| `npm run format`    | Merapikan format semua file                                           |
+| `npm run test`      | Unit test (Vitest) lalu E2E (Playwright, butuh `dist/`)               |
+| `npm run test:unit` | Unit test saja (tanpa build)                                          |
+| `npm run test:ci`   | Build lalu tes                                                        |
+| `npm run images`    | Membuat ulang `apple-touch-icon.png` dan OG image                     |
 
 Pertama kali menjalankan tes: `npx playwright install chromium`.
 
@@ -44,9 +45,11 @@ src/
 ├── i18n/          id.json, en.json, helper bahasa
 ├── components/    ui/, layout/, sections/, seo/
 ├── layouts/       BaseLayout, MarkdownPageLayout
-├── pages/[lang]/  index (one-page) + halaman legal (dibangun untuk id & en)
+├── lib/sections/  data tiap section (konten + i18n → props komponen)
+├── pages/[lang]/  index (one-page, hanya komposisi) + halaman legal
 ├── scripts/       animasi, header, consent, analytics
 └── styles/        global.css (design tokens)
+tests/unit/        Vitest (logika murni)
 tests/e2e/         Playwright + axe
 docs/              panduan konten, branding, deploy, keamanan
 ```

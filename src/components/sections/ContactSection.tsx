@@ -13,6 +13,8 @@ export type ContactDetail = {
 export type ContactSectionProps = {
   /** Anchor untuk navigasi one-page. */
   id?: string;
+  /** id judul untuk `aria-labelledby`; unik per halaman. Default: `${id}-title`. */
+  titleId?: string;
   index?: string;
   eyebrow: string;
   title: string;
@@ -30,6 +32,7 @@ export type ContactSectionProps = {
 /** Kontak kantor pusat: alamat, telepon/email/jam, dan peta statis. Tanpa form. */
 export default function ContactSection({
   id,
+  titleId = `${id ?? 'contact'}-title`,
   index,
   eyebrow,
   title,
@@ -41,7 +44,6 @@ export default function ContactSection({
   map,
   opensInNewTabLabel,
 }: ContactSectionProps) {
-  const titleId = `${id ?? 'contact'}-title`;
   return (
     <Section
       id={id}

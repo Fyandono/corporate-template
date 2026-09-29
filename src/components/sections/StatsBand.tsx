@@ -4,6 +4,10 @@ import Eyebrow from '../ui/Eyebrow';
 export type Stat = { value: number; label: string; suffix?: string };
 
 export type StatsBandProps = {
+  /** Anchor untuk navigasi one-page. */
+  id?: string;
+  /** id judul untuk `aria-labelledby`; unik per halaman. Default: `${id}-title`. */
+  titleId?: string;
   /** Judul section, tampil sebagai label kecil ala laporan tahunan. */
   title: string;
   stats: Stat[];
@@ -17,13 +21,20 @@ export type StatsBandProps = {
  * Angka kunci bergaya laporan tahunan: angka serif sangat besar, kolom dipisah garis rambut,
  * catatan sumber data. Angka berhitung naik lewat `data-counter` (src/scripts/animations.ts).
  */
-export default function StatsBand({ title, stats, locale, note }: StatsBandProps) {
+export default function StatsBand({
+  title,
+  stats,
+  locale,
+  note,
+  id,
+  titleId = `${id ?? 'stats'}-title`,
+}: StatsBandProps) {
   const format = new Intl.NumberFormat(locale);
   return (
-    <section aria-labelledby="stats-title" className="bg-white">
+    <section id={id} aria-labelledby={titleId} className="bg-white">
       <Container className="pb-section md:pb-section-lg">
         <div className="flex flex-col gap-3 border-t border-primary-900 pt-5 sm:flex-row sm:items-baseline sm:justify-between">
-          <Eyebrow as="h2" id="stats-title" tone="strong" rule={false}>
+          <Eyebrow as="h2" id={titleId} tone="strong" rule={false}>
             {title}
           </Eyebrow>
           {note && <p className="text-caption text-neutral-500">{note}</p>}
