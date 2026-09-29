@@ -1,6 +1,7 @@
 import type { CollectionEntry } from 'astro:content';
 import type { BusinessCardProps } from '../components/sections/BusinessCard';
 import type { NewsCardProps } from '../components/sections/NewsCard';
+import type { PersonCardProps } from '../components/ui/PersonCard';
 import { formatDate, localize, type Locale } from '../i18n';
 import { responsiveImage } from './image';
 
@@ -29,7 +30,7 @@ export async function businessCardProps(
 export async function newsCardProps(
   entry: CollectionEntry<'news'>,
   lang: Locale,
-  href: string,
+  href?: string,
 ): Promise<NewsCardProps> {
   const { data } = entry;
   return {
@@ -43,5 +44,24 @@ export async function newsCardProps(
     dateTime: data.date.toISOString(),
     dateLabel: formatDate(data.date, lang),
     href,
+  };
+}
+
+/** Ubah entri koleksi `management` menjadi props polos untuk PersonCard. */
+export async function personCardProps(
+  entry: CollectionEntry<'management'>,
+  lang: Locale,
+): Promise<Omit<PersonCardProps, 'as' | 'viewProfileLabel'>> {
+  const { data } = entry;
+  return {
+    name: data.name,
+    position: localize(data.position, lang),
+    bio: localize(data.bio, lang),
+    photo: await responsiveImage(
+      data.photo,
+      data.name,
+      '(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw',
+      [320, 640],
+    ),
   };
 }

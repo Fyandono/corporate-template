@@ -5,7 +5,7 @@ import Footer from '../components/layout/Footer.tsx';
 import Header from '../components/layout/Header.astro';
 import SkipLink from '../components/layout/SkipLink.astro';
 import SEO, { type Breadcrumb } from '../components/seo/SEO.astro';
-import { legalNav, mainNav } from '../config/navigation';
+import { legalNav, mainNav, sectionHref } from '../config/navigation';
 import { site } from '../config/site';
 import { localize, localizedPath, locales, stripLocale, t, type Locale } from '../i18n';
 
@@ -38,8 +38,14 @@ const fullTitle = title
   : `${site.shortName} — ${site.tagline[lang]}`;
 const measurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID?.trim() ?? '';
 const { address } = site.contact;
-const navLinks = (items: typeof mainNav) =>
-  items.map((item) => ({ label: dict.nav[item.key], href: localizedPath(lang, item.path) }));
+const sectionLinks = mainNav.map((item) => ({
+  label: dict.nav[item.key],
+  href: sectionHref(lang, item.id),
+}));
+const legalLinks = legalNav.map((item) => ({
+  label: dict.nav[item.key],
+  href: localizedPath(lang, item.path),
+}));
 ---
 
 <!doctype html>
@@ -87,7 +93,7 @@ const navLinks = (items: typeof mainNav) =>
       tagline={localize(site.tagline, lang)}
       legalName={site.legalName}
       addressLines={[address.street, `${address.city}, ${address.region} ${address.postalCode}`]}
-      mainNav={navLinks(mainNav)}
+      mainNav={sectionLinks}
       mainNavLabel={dict.common.mainNav}
       followUsLabel={dict.common.followUs}
       social={site.social.map((item) => ({ label: item.name, href: item.url }))}
@@ -97,7 +103,7 @@ const navLinks = (items: typeof mainNav) =>
       email={site.contact.email}
       emailLabel={dict.contact.email}
       copyright={`© ${new Date().getFullYear()} ${site.legalName}. ${dict.common.allRightsReserved}`}
-      legalNav={navLinks(legalNav)}
+      legalNav={legalLinks}
       cookieSettingsLabel={measurementId ? dict.common.cookieSettings : undefined}
     />
     {measurementId && <ConsentManager lang={lang} measurementId={measurementId} />}

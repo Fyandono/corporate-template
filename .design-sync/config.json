@@ -47,6 +47,36 @@
     },
     "NusantaraPattern": {
       "cardMode": "column"
+    },
+    "Section": {
+      "cardMode": "column"
+    },
+    "AboutIntro": {
+      "cardMode": "column"
+    },
+    "VisionMission": {
+      "cardMode": "column"
+    },
+    "ValuesGrid": {
+      "cardMode": "column"
+    },
+    "Timeline": {
+      "cardMode": "column"
+    },
+    "ManagementSection": {
+      "cardMode": "column"
+    },
+    "BusinessSection": {
+      "cardMode": "column"
+    },
+    "NewsSection": {
+      "cardMode": "column"
+    },
+    "ContactSection": {
+      "cardMode": "column"
+    },
+    "Eyebrow": {
+      "cardMode": "column"
     }
   },
   "readmeHeader": ".design-sync/conventions.md"

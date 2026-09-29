@@ -49,13 +49,51 @@
   --text-eyebrow--line-height: 1;
   --text-eyebrow--letter-spacing: 0.28em;
 
+  /* Skala teks semantik (pakai ini, bukan text-sm/lg/xl bawaan Tailwind). */
+  --text-caption: 0.75rem; /* catatan, hak cipta */
+  --text-caption--line-height: 1rem;
+  --text-small: 0.875rem; /* label, navigasi, tombol, teks sekunder */
+  --text-small--line-height: 1.25rem;
+  --text-body: 1rem;
+  --text-body--line-height: 1.5rem;
+  --text-body-lg: 1.125rem; /* paragraf utama, isi Markdown */
+  --text-body-lg--line-height: 1.75rem;
+  --text-title-sm: 1.25rem; /* judul kartu kecil (h3/h4) */
+  --text-title-sm--line-height: 1.75rem;
+  --text-title: 1.5rem; /* judul kartu (h3) */
+  --text-title--line-height: 2rem;
+  --text-title-lg: 2.25rem; /* angka tahun, sub-judul besar */
+  --text-title-lg--line-height: 2.5rem;
+  --text-figure: 3.75rem; /* angka statistik (mobile) */
+  --text-figure--line-height: 1;
+  --text-figure-lg: 6rem; /* angka statistik (desktop) */
+  --text-figure-lg--line-height: 1;
+
+  /* Ritme vertikal section: `py-section md:py-section-lg` (lihat komponen Section). */
+  --spacing-section: 7rem;
+  --spacing-section-lg: 10rem;
+  --spacing-section-compact: 5rem;
+  --spacing-section-compact-lg: 7rem;
+  /* Tinggi header sticky; dipakai juga untuk scroll-padding anchor section. */
+  --spacing-header: 4rem;
+
+  /* Rasio gambar. */
+  --aspect-landscape: 3 / 2; /* kartu berita & bisnis (mobile) */
+  --aspect-portrait: 3 / 4; /* foto manajemen */
+  --aspect-card: 4 / 5; /* kartu bisnis (≥ sm) */
+
+  --shadow-hairline: 0 1px 0 0 var(--color-neutral-200); /* garis bawah header saat di-scroll */
+
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* Link menu untuk section yang sedang tampil (scroll-spy di src/scripts/header.ts). */
+@custom-variant current (&[aria-current='true']);
 
 @layer base {
   html {
     @apply scroll-smooth bg-white text-neutral-700 antialiased;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: calc(var(--spacing-header) + 1rem);
   }
   body {
     @apply bg-white font-sans;
@@ -72,6 +110,13 @@
   }
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-accent-500;
+  }
+  /* Sembunyikan segitiga bawaan <summary>; komponen memakai ikon sendiri. */
+  summary {
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
   }
   ::selection {
     @apply bg-accent-300 text-primary-950;
@@ -176,16 +221,16 @@
 
 /* Konten Markdown (legal, tata kelola, berita). */
 @utility prose-content {
-  @apply text-lg leading-relaxed text-neutral-700;
+  @apply text-body-lg leading-relaxed text-neutral-700;
 
   & > * + * {
     @apply mt-5;
   }
   & h2 {
-    @apply mt-12 text-2xl text-primary-900;
+    @apply mt-12 text-title text-primary-900;
   }
   & h3 {
-    @apply mt-8 text-xl text-primary-900;
+    @apply mt-8 text-title-sm text-primary-900;
   }
   & a {
     @apply text-primary-600 underline underline-offset-4 hover:text-primary-800;
@@ -200,11 +245,11 @@
     @apply font-semibold text-primary-900;
   }
   & blockquote {
-    @apply border-l-4 border-accent-500 bg-primary-50 px-5 py-4 text-base;
+    @apply border-l-4 border-accent-500 bg-primary-50 px-5 py-4 text-body;
   }
   /* Tabel tidak di-scroll horizontal; teks dibungkus agar muat di layar kecil. */
   & table {
-    @apply w-full table-fixed border-collapse text-left text-sm sm:text-base;
+    @apply w-full table-fixed border-collapse text-left text-small sm:text-body;
   }
   & th {
     @apply border-b-2 border-neutral-300 py-3 pr-3 align-bottom font-semibold wrap-break-word text-primary-900;

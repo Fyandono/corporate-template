@@ -15,7 +15,7 @@ export default function BusinessCard({ title, summary, image, index, href }: Bus
   const Tag = href ? 'a' : 'article';
   return (
     <Tag href={href} className="group flex flex-col" data-reveal>
-      <div className="aspect-3/2 overflow-hidden rounded-card bg-neutral-100 sm:aspect-4/5">
+      <div className="aspect-landscape overflow-hidden rounded-card bg-neutral-100 sm:aspect-card">
         <img
           {...image}
           loading="lazy"
@@ -43,7 +43,7 @@ export default function BusinessCard({ title, summary, image, index, href }: Bus
           </svg>
         )}
       </div>
-      <h3 className="mt-4 text-2xl font-normal tracking-tight">{title}</h3>
+      <h3 className="mt-4 text-title font-normal tracking-tight">{title}</h3>
       <p className="mt-3 leading-relaxed text-neutral-600">{summary}</p>
     </Tag>
   );

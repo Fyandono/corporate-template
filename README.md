@@ -1,6 +1,6 @@
 # Corporate Website Template (BUMN)
 
-Template website company profile statis dwibahasa (ID/EN) untuk BUMN.
+Template website company profile **one-page** statis dwibahasa (ID/EN) untuk BUMN: satu halaman panjang berisi section (Tentang, Manajemen, Bisnis, Tata Kelola, Keberlanjutan, Berita, Kontak) dengan navbar anchor yang menandai section aktif. Halaman terpisah hanya untuk legal (privasi, cookie, syarat).
 Dibangun dengan **Astro + TypeScript + Tailwind CSS v4**, di-hosting di **Firebase Hosting**.
 
 Spesifikasi & keputusan arsitektur: [`SPEC.md`](SPEC.md).
@@ -44,7 +44,7 @@ src/
 ├── i18n/          id.json, en.json, helper bahasa
 ├── components/    ui/, layout/, sections/, seo/
 ├── layouts/       BaseLayout, MarkdownPageLayout
-├── pages/[lang]/  semua halaman (dibangun untuk id & en)
+├── pages/[lang]/  index (one-page) + halaman legal (dibangun untuk id & en)
 ├── scripts/       animasi, header, consent, analytics
 └── styles/        global.css (design tokens)
 tests/e2e/         Playwright + axe
@@ -57,4 +57,5 @@ docs/              panduan konten, branding, deploy, keamanan
 - [Branding klien baru](docs/BRANDING.md) — logo, warna, font
 - [Deployment](docs/DEPLOYMENT.md) — Firebase, GitHub Actions, domain
 - [Keamanan](docs/SECURITY.md) — header, CSP, dependency
+
 # corporate-template

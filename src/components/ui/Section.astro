@@ -1,0 +1,25 @@
+---
+/**
+ * Section standar untuk konten Astro (slot). Komponen React memakai Section.tsx (class yang sama).
+ * Dipertahankan sebagai .astro karena slot Astro di dalam komponen React dibungkus elemen tambahan.
+ */
+import { containerClass } from './Container.tsx';
+import { sectionClasses, type SectionSpacing, type SectionTone } from './Section.tsx';
+
+type Props = {
+  id?: string;
+  labelledBy?: string;
+  tone?: SectionTone;
+  spacing?: SectionSpacing;
+  class?: string;
+  containerClass?: string;
+};
+const { id, labelledBy, tone, spacing, class: className, containerClass: inner } = Astro.props;
+const classes = sectionClasses(tone, spacing);
+---
+
+<section id={id} aria-labelledby={labelledBy} class:list={[classes.section, className]}>
+  <div class:list={[containerClass, classes.container, inner]}>
+    <slot />
+  </div>
+</section>

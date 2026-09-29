@@ -26,7 +26,7 @@ export default function Logo({ name, className }: LogoProps) {
         <path d="M11 29V11l9 11 9-11v18" fill="none" stroke="currentColor" strokeWidth="2.5" />
         <circle cx="20" cy="31" r="2" className="fill-accent-500" />
       </svg>
-      <span className="text-base leading-tight font-bold tracking-tight">{name}</span>
+      <span className="text-body leading-tight font-bold tracking-tight">{name}</span>
     </span>
   );
 }

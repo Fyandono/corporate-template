@@ -15,14 +15,16 @@ No provider or wrapper needed. Components are plain presentational React (props 
 
 Style your own layout glue with the Tailwind classes compiled into `styles.css` (tokens + utilities). **Only classes that exist in `styles.css` work.** No arbitrary values (`bg-[#...]`, `p-[13px]`) and no inline hex colours.
 
-| Family                                                                | Classes                                                                                                                                                       |
-| --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Brand grey scale                                                      | `bg-primary-{50,900,950}`, `text-primary-{100,200,500,900}`, `border-primary-900`                                                                             |
-| Accent (light/mid grey, use sparingly: thin lines, numbers, eyebrows) | `bg-accent-500`, `text-accent-{400,600,700}`, `border-accent-500`                                                                                             |
-| Neutral text & surfaces                                               | `text-neutral-{500,600,700}`, `bg-neutral-{50,100}`, `border-neutral-200`                                                                                     |
-| Display type                                                          | `text-display` (hero h1), `text-headline` (section h2), `text-statement` (big quote)                                                                          |
-| Radius                                                                | `rounded-card`                                                                                                                                                |
-| Layout                                                                | `grid`, `grid-cols-*`, `sm:/md:/lg:grid-cols-*`, `col-span-*`, `flex`, `gap-*`, `max-w-*`, `mx-auto`, `py-28 md:py-40` (standard section rhythm; be generous) |
+| Family                                                                | Classes                                                                                                                                                                                     |
+| --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Brand grey scale                                                      | `bg-primary-{50,900,950}`, `text-primary-{100,200,500,900}`, `border-primary-900`                                                                                                           |
+| Accent (light/mid grey, use sparingly: thin lines, numbers, eyebrows) | `bg-accent-500`, `text-accent-{400,600,700}`, `border-accent-500`                                                                                                                           |
+| Neutral text & surfaces                                               | `text-neutral-{500,600,700}`, `bg-neutral-{50,100}`, `border-neutral-200`                                                                                                                   |
+| Display type                                                          | `text-display` (hero h1), `text-headline` (section h2), `text-statement` (big quote), `text-lead` (intro paragraph), `text-eyebrow` (via `Eyebrow`)                                         |
+| Text scale (semantic, use instead of `text-sm/lg/xl`)                 | `text-caption`, `text-small`, `text-body`, `text-body-lg`, `text-title-sm`, `text-title`, `text-title-lg`, `text-figure`, `text-figure-lg`                                                  |
+| Image ratio                                                           | `aspect-landscape` (3:2), `aspect-portrait` (3:4), `aspect-card` (4:5)                                                                                                                      |
+| Radius                                                                | `rounded-card`                                                                                                                                                                              |
+| Layout                                                                | `grid`, `grid-cols-*`, `sm:/md:/lg:grid-cols-*`, `col-span-*`, `flex`, `gap-*`, `max-w-*`, `mx-auto`, `py-section md:py-section-lg` (standard section rhythm; `Section` applies it for you) |
 
 Backgrounds alternate `bg-white` → `bg-neutral-50` → one dark `bg-primary-950 text-white` section. Use at most 1–2 dark sections per page, each with `<NusantaraPattern fade="right" />` then `<ColumnLines />` as its first children (section must be `relative isolate overflow-hidden`). Number the homepage sections with `SectionHeading index="01"`… On dark sections, pass `tone="dark"` to `SectionHeading` and use `Button` variants `accent` / `ghost-light`. On light sections use `primary` / `secondary`.
 
@@ -33,32 +35,30 @@ Backgrounds alternate `bg-white` → `bg-neutral-50` → one dark `bg-primary-95
 
 ## Components
 
-`Hero`, `PageHero`, `SectionHeading`, `ColumnLines`, `NusantaraPattern` (`tone="light"` for light sections, used sparingly), `StatsBand`, `BusinessCard`, `NewsCard`, `CinematicStatement`, `CtaBand`, `Footer`, `Button`, `Logo`, `Container`. `Container` gives the page width (`max-w-7xl` + gutters). Wrap every section's content in it.
+**Core (`ui/`):** `Section` (background tone `light`/`muted`/`dark` + Container + vertical rhythm — start every section with it), `SectionHeading`, `Eyebrow` (small wide-tracked label, tones `light`/`strong`/`dark`), `Button`, `PersonCard`, `Container`, `Logo`, `ColumnLines`, `NusantaraPattern` (`tone="light"` for light sections, used sparingly).
+
+**Sections (`sections/`), composed top-to-bottom on the one-page homepage:** `Hero`, `AboutIntro`, `StatsBand`, `VisionMission`, `ValuesGrid`, `Timeline`, `ManagementSection`, `BusinessSection` (+ `BusinessCard`), `NewsSection` (+ `NewsCard`), `ContactSection`, plus `CinematicStatement`, `CtaBand`, `PageHero` (legal pages) and `Footer`. Sections that are navbar targets take an `id` (e.g. `about`, `business`) and an `index` ("01", "02"…).
 
 ## Example: a homepage section
 
 ```jsx
-<section className="bg-neutral-50">
-  <Container className="py-28 md:py-40">
-    <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-      <SectionHeading
-        index="02"
-        eyebrow="Lini Bisnis"
-        title="Portofolio yang menopang perekonomian"
-      />
-      <Button href="/id/business" variant="secondary" className="shrink-0">
-        Selengkapnya
-      </Button>
-    </div>
-    <div className="mt-16 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
-      <BusinessCard
-        index={0}
-        href="#"
-        title="Energi"
-        summary="Penyediaan energi yang andal."
-        image={{ src: '/energi.jpg', alt: 'Pembangkit listrik', width: 1200, height: 800 }}
-      />
-    </div>
-  </Container>
-</section>
+<Section id="values" tone="muted" labelledBy="values-title">
+  <SectionHeading
+    id="values-title"
+    index="02"
+    eyebrow="Nilai Perusahaan"
+    title="Nilai-nilai yang kami pegang"
+  />
+  <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    <li className="border-t-2 border-accent-500 pt-6">
+      <h3 className="text-title-sm">Amanah</h3>
+      <p className="mt-3 text-body leading-relaxed text-neutral-600">
+        Memegang teguh kepercayaan yang diberikan.
+      </p>
+    </li>
+  </ul>
+  <Button href="#contact" variant="secondary" className="mt-12">
+    Hubungi Kami
+  </Button>
+</Section>
 ```

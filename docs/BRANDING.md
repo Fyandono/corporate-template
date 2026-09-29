@@ -27,6 +27,16 @@ Semua warna ada di blok `@theme` di `src/styles/global.css`. Default template ad
 
 Font selalu di-hosting sendiri (bukan Google Fonts CDN) demi privasi dan CSP.
 
+## 3a. Ukuran teks, jarak, dan rasio gambar
+
+Juga di blok `@theme` di `global.css` — ubah nilainya, jangan namanya:
+
+- **Tipografi besar:** `--text-display` (judul hero), `--text-headline` (judul section), `--text-statement`, `--text-lead`, `--text-eyebrow`.
+- **Skala teks semantik:** `--text-caption`, `--text-small`, `--text-body`, `--text-body-lg`, `--text-title-sm`, `--text-title`, `--text-title-lg`, `--text-figure(-lg)` (angka statistik). Komponen memakai kelas ini, bukan `text-sm`/`text-lg` bawaan Tailwind.
+- **Jarak section:** `--spacing-section(-lg)` dan `--spacing-section-compact(-lg)` — dipakai komponen `Section` di semua section. Perkecil untuk tampilan yang lebih rapat.
+- **Tinggi header:** `--spacing-header` (juga menentukan offset scroll ke anchor section).
+- **Rasio gambar:** `--aspect-landscape`, `--aspect-portrait` (foto manajemen), `--aspect-card`.
+
 ## 4. Logo & ikon
 
 - **Logo header/footer:** ganti SVG di `src/components/ui/Logo.tsx`. Gunakan `currentColor` agar logo otomatis putih di atas hero gelap dan gelap saat header berlatar putih. Jika logo resmi multiwarna, siapkan dua versi (terang & gelap).

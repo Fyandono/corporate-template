@@ -1,5 +1,6 @@
 import ColumnLines from '../ui/ColumnLines';
 import Container from '../ui/Container';
+import Eyebrow from '../ui/Eyebrow';
 import NusantaraPattern from '../ui/NusantaraPattern';
 
 export type CinematicStatementProps = {
@@ -23,14 +24,11 @@ export default function CinematicStatement({ eyebrow, statement, index }: Cinema
       <ColumnLines />
       <Container className="py-32 md:py-48">
         <figure className="grid gap-10 lg:grid-cols-12">
-          <figcaption
-            className="flex items-center gap-4 self-start text-eyebrow font-semibold text-accent-400 uppercase lg:col-span-3"
-            data-reveal
-          >
-            {index && <span className="text-white tabular-nums">{index}</span>}
-            <span className="h-px w-10 bg-current opacity-50" aria-hidden="true" />
-            {eyebrow}
-          </figcaption>
+          <div className="self-start lg:col-span-3" data-reveal>
+            <Eyebrow as="figcaption" tone="dark" index={index}>
+              {eyebrow}
+            </Eyebrow>
+          </div>
           <blockquote
             className="font-serif text-statement font-light text-balance text-white lg:col-span-9"
             data-reveal

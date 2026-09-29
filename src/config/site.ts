@@ -54,12 +54,11 @@ export const site = {
     },
   ] as { value: number; suffix?: LocalizedString; label: LocalizedString }[],
 
-  /** Modul opsional. Modul nonaktif tidak dibangun dan tidak tampil di navigasi/sitemap. */
+  /** Section opsional di halaman utama. Section nonaktif tidak dirender dan tidak tampil di navigasi. */
   features: {
     governance: true,
     sustainability: true,
     news: false,
-    businessDetailPages: false,
   },
 } as const;
 

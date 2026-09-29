@@ -1,6 +1,7 @@
 import Button from '../ui/Button';
 import ColumnLines from '../ui/ColumnLines';
 import Container from '../ui/Container';
+import Eyebrow from '../ui/Eyebrow';
 import NusantaraPattern from '../ui/NusantaraPattern';
 
 type Action = { label: string; href: string };
@@ -49,10 +50,7 @@ export default function Hero({
             className="flex items-center justify-between gap-6 text-eyebrow font-semibold uppercase"
             data-reveal
           >
-            <p className="flex items-center gap-4 text-accent-400">
-              <span className="h-px w-10 bg-current opacity-50" aria-hidden="true" />
-              {eyebrow}
-            </p>
+            <Eyebrow tone="dark">{eyebrow}</Eyebrow>
             {meta.length > 0 && (
               <ul className="hidden gap-8 text-primary-200 sm:flex">
                 {meta.map((item) => (

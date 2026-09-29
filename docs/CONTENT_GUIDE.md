@@ -6,17 +6,23 @@ Jalankan `npm run dev` untuk melihat perubahan secara langsung. Jika ada field y
 
 ## Di mana mengubah apa
 
-| Yang ingin diubah                                                              | File                                      |
-| ------------------------------------------------------------------------------ | ----------------------------------------- |
-| Nama perusahaan, alamat, telepon, email, sosial media, angka kunci beranda     | `src/config/site.ts`                      |
-| Menyalakan/mematikan halaman Tata Kelola, Keberlanjutan, Berita, detail Bisnis | `src/config/site.ts` → `features`         |
-| Teks beranda, Tentang Kami (profil, visi, misi), label menu & tombol           | `src/i18n/id.json` dan `src/i18n/en.json` |
-| Dewan Komisaris & Direksi                                                      | `src/content/management/*.yaml`           |
-| Lini bisnis                                                                    | `src/content/business/*.yaml`             |
-| Sejarah (timeline)                                                             | `src/content/milestones.yaml`             |
-| Nilai perusahaan                                                               | `src/content/values.yaml`                 |
-| Kebijakan Privasi, Cookie, Syarat, Tata Kelola, Keberlanjutan                  | `src/content/pages/{id,en}/*.md`          |
-| Berita                                                                         | `src/content/news/{id,en}/*.md`           |
+| Yang ingin diubah                                                           | File                                      |
+| --------------------------------------------------------------------------- | ----------------------------------------- |
+| Nama perusahaan, alamat, telepon, email, sosial media, angka kunci beranda  | `src/config/site.ts`                      |
+| Menyalakan/mematikan section Tata Kelola, Keberlanjutan, Berita             | `src/config/site.ts` → `features`         |
+| Teks section beranda (hero, profil, visi, misi, judul section), label menu  | `src/i18n/id.json` dan `src/i18n/en.json` |
+| Dewan Komisaris & Direksi                                                   | `src/content/management/*.yaml`           |
+| Lini bisnis                                                                 | `src/content/business/*.yaml`             |
+| Sejarah (timeline)                                                          | `src/content/milestones.yaml`             |
+| Nilai perusahaan                                                            | `src/content/values.yaml`                 |
+| Kebijakan Privasi, Cookie, Syarat; teks section Tata Kelola & Keberlanjutan | `src/content/pages/{id,en}/*.md`          |
+| Berita (3 terbaru tampil di section Berita)                                 | `src/content/news/{id,en}/*.md`           |
+
+## Struktur one-page
+
+Semua konten tampil di satu halaman (`/id`, `/en`) yang terbagi menjadi section; menu di header adalah anchor ke section tersebut (`/id#about`). Daftar & urutan menu ada di `src/config/navigation.ts`; `id` tiap item harus sama dengan `id` section di `src/pages/[lang]/index.astro`. Halaman terpisah hanya untuk Kebijakan Privasi, Cookie, dan Syarat Penggunaan.
+
+Section Tata Kelola dan Keberlanjutan diambil dari `src/content/pages/{id,en}/governance.md` dan `sustainability.md`. Karena judul section sudah berupa `<h2>`, subjudul di dalam file tersebut memakai `###`.
 
 ## Teks dwibahasa
 
@@ -52,7 +58,7 @@ Foto otomatis dikompres dan dibuat dalam beberapa ukuran (AVIF/WebP) saat build.
 
 ## Menambah lini bisnis
 
-Salin salah satu file di `src/content/business/`, ubah isinya. Nama file menjadi URL detail (mis. `energi.yaml` → `/id/business/energi` bila `businessDetailPages` aktif). `imageAlt` wajib diisi: jelaskan isi gambar untuk pengguna pembaca layar.
+Salin salah satu file di `src/content/business/`, ubah isinya; kartu otomatis muncul di section Bisnis (urut berdasarkan `order`). `imageAlt` wajib diisi: jelaskan isi gambar untuk pengguna pembaca layar.
 
 ## Berita
 
@@ -72,10 +78,10 @@ translationKey: judul-berita-2026-10
 draft: false
 ---
 
-Isi berita dalam Markdown.
+Isi berita dalam Markdown (disimpan untuk arsip; situs one-page hanya menampilkan judul, tanggal, ringkasan, dan gambar).
 ```
 
-Jika versi bahasa lain belum ada, tombol bahasa mengarah ke daftar berita bahasa tersebut. `draft: true` menyembunyikan berita.
+Tiga berita terbaru per bahasa tampil sebagai kartu di section Berita. `draft: true` menyembunyikan berita.
 
 ## Gambar
 

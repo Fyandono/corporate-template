@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.tsx';
 import Container from '../components/ui/Container.astro';
+import Eyebrow from '../components/ui/Eyebrow.tsx';
 import { localizedPath, t } from '../i18n';
 
 // Firebase menyajikan halaman ini untuk semua URL yang tidak ditemukan. Ditampilkan dwibahasa.
@@ -15,24 +17,20 @@ const en = t('en').notFound;
   alternates={{ id: localizedPath('id'), en: localizedPath('en') }}
 >
   <section class="bg-primary-950 flex min-h-svh items-center text-white">
-    <Container class="py-40">
-      <p class="text-accent-400 text-sm font-semibold tracking-[0.25em]">404</p>
+    <Container class="py-section-lg">
+      <Eyebrow tone="dark">404</Eyebrow>
       <h1 class="text-display mt-6 text-white">{id.title}</h1>
-      <p class="text-primary-100 mt-6 max-w-xl text-lg">{id.body}</p>
+      <p class="text-primary-100 text-body-lg mt-6 max-w-xl">{id.body}</p>
       <p class="text-primary-200 mt-2 max-w-xl" lang="en">
         {en.body}
       </p>
-      <div class="mt-10 flex flex-wrap gap-4 text-sm font-semibold">
-        <a href={localizedPath('id')} class="bg-accent-500 text-primary-950 rounded-card px-6 py-3">
+      <div class="mt-10 flex flex-wrap gap-4">
+        <Button href={localizedPath('id')} variant="accent">
           {id.back}
-        </a>
-        <a
-          href={localizedPath('en')}
-          lang="en"
-          class="rounded-card border border-white/40 px-6 py-3 hover:bg-white/10"
-        >
+        </Button>
+        <Button href={localizedPath('en')} variant="ghost-light" lang="en">
           {en.back}
-        </a>
+        </Button>
       </div>
     </Container>
   </section>

@@ -21,9 +21,6 @@
     "openMenu": "Buka menu",
     "closeMenu": "Tutup menu",
     "language": "Bahasa",
-    "switchLanguage": "Baca dalam Bahasa Inggris",
-    "learnMore": "Selengkapnya",
-    "readMore": "Baca selengkapnya",
     "breadcrumb": "Breadcrumb",
     "cookieSettings": "Pengaturan Cookie",
     "followUs": "Ikuti kami",
@@ -33,7 +30,6 @@
     "scrollDown": "Gulir ke bawah"
   },
   "home": {
-    "title": "Beranda",
     "heroEyebrow": "Badan Usaha Milik Negara",
     "heroTitle": "Membangun nilai berkelanjutan untuk Indonesia",
     "heroLead": "Kami mengelola aset strategis negara secara profesional, transparan, dan akuntabel untuk memberikan manfaat terbaik bagi masyarakat dan pemangku kepentingan.",
@@ -41,32 +37,18 @@
     "heroSecondary": "Lini Bisnis",
     "heroEstablished": "Didirikan",
     "heroLocation": "Jakarta, Indonesia",
-    "introEyebrow": "Sekilas Perusahaan",
-    "introTitle": "Lima dekade berkontribusi bagi pembangunan nasional",
-    "introBody": "Sejak didirikan, perusahaan terus bertransformasi menjadi entitas yang tangguh dan adaptif. Dengan tata kelola yang baik dan inovasi berkelanjutan, kami menjalankan peran sebagai agen pembangunan sekaligus penciptaan nilai ekonomi.",
     "statsTitle": "Perusahaan dalam angka",
-    "statsNote": "Data per 31 Desember 2025",
-    "businessEyebrow": "Lini Bisnis",
-    "businessTitle": "Portofolio yang menopang perekonomian",
-    "statementEyebrow": "Visi",
-    "statement": "Menjadi perusahaan kelas dunia yang menjadi kebanggaan bangsa dan memberi nilai tambah bagi Indonesia.",
-    "newsEyebrow": "Kabar Terbaru",
-    "newsTitle": "Berita & siaran pers",
-    "ctaTitle": "Mari berkolaborasi membangun negeri",
-    "ctaBody": "Hubungi kami untuk informasi lebih lanjut mengenai perusahaan dan peluang kerja sama.",
-    "ctaButton": "Hubungi Kami"
+    "statsNote": "Data per 31 Desember 2025"
   },
   "about": {
-    "title": "Tentang Kami",
-    "description": "Profil, sejarah, visi dan misi, serta nilai-nilai perusahaan.",
-    "lead": "Mengenal lebih dekat perjalanan, arah, dan nilai-nilai yang kami pegang.",
-    "profileEyebrow": "Profil",
-    "profileTitle": "Siapa kami",
-    "profileBody": [
+    "title": "Lima dekade berkontribusi bagi pembangunan nasional",
+    "lead": "Sejak didirikan, perusahaan terus bertransformasi menjadi entitas yang tangguh dan adaptif. Dengan tata kelola yang baik dan inovasi berkelanjutan, kami menjalankan peran sebagai agen pembangunan sekaligus penciptaan nilai ekonomi.",
+    "body": [
       "Perusahaan merupakan Badan Usaha Milik Negara yang bergerak di sektor strategis nasional. Kami berperan menjalankan kegiatan usaha yang mendukung kebijakan pemerintah sekaligus menghasilkan nilai ekonomi yang berkelanjutan.",
       "Didukung oleh insan-insan profesional dan jaringan operasi di seluruh Indonesia, kami berkomitmen menerapkan prinsip tata kelola perusahaan yang baik dalam setiap aspek bisnis."
     ],
     "visionTitle": "Visi",
+    "vision": "Menjadi perusahaan kelas dunia yang menjadi kebanggaan bangsa dan memberi nilai tambah bagi Indonesia.",
     "missionTitle": "Misi",
     "mission": [
       "Menyediakan produk dan layanan berkualitas yang memberikan manfaat bagi masyarakat.",
@@ -80,29 +62,22 @@
     "historyTitle": "Perjalanan kami"
   },
   "management": {
-    "title": "Manajemen",
-    "description": "Susunan Dewan Komisaris dan Direksi perusahaan.",
-    "lead": "Dipimpin oleh jajaran profesional yang berpengalaman dan berintegritas.",
+    "title": "Dipimpin oleh jajaran profesional yang berpengalaman dan berintegritas.",
     "commissioners": "Dewan Komisaris",
     "directors": "Direksi",
     "viewProfile": "Lihat profil"
   },
   "business": {
-    "title": "Lini Bisnis",
-    "description": "Lini bisnis dan portofolio perusahaan.",
+    "title": "Portofolio yang menopang perekonomian",
     "lead": "Portofolio usaha yang saling terintegrasi untuk menciptakan nilai bagi negara."
   },
   "news": {
-    "title": "Berita",
-    "description": "Berita dan siaran pers terbaru perusahaan.",
-    "lead": "Informasi dan siaran pers terbaru dari perusahaan.",
-    "empty": "Belum ada berita.",
-    "backToList": "Kembali ke daftar berita"
+    "title": "Berita & siaran pers",
+    "empty": "Belum ada berita."
   },
   "contact": {
-    "title": "Kontak",
-    "description": "Alamat, telepon, dan email kantor pusat perusahaan.",
-    "lead": "Kami siap membantu. Silakan hubungi kantor pusat kami melalui kanal berikut.",
+    "title": "Mari berkolaborasi membangun negeri",
+    "lead": "Hubungi kami untuk informasi lebih lanjut mengenai perusahaan dan peluang kerja sama.",
     "office": "Kantor Pusat",
     "phone": "Telepon",
     "email": "Email",

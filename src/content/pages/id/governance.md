@@ -6,7 +6,7 @@ updatedAt: 2026-09-28
 
 Perusahaan berkomitmen menerapkan prinsip-prinsip **Good Corporate Governance (GCG)** secara konsisten dalam seluruh kegiatan usaha.
 
-## Prinsip GCG
+### Prinsip GCG
 
 - **Transparansi** — keterbukaan dalam pengambilan keputusan dan pengungkapan informasi material.
 - **Akuntabilitas** — kejelasan fungsi dan pertanggungjawaban organ perusahaan.
@@ -14,10 +14,10 @@ Perusahaan berkomitmen menerapkan prinsip-prinsip **Good Corporate Governance (G
 - **Kemandirian** — pengelolaan secara profesional tanpa benturan kepentingan.
 - **Kewajaran** — keadilan dalam memenuhi hak pemangku kepentingan.
 
-## Organ perusahaan
+### Organ perusahaan
 
 Organ perusahaan terdiri atas Rapat Umum Pemegang Saham (RUPS), Dewan Komisaris, dan Direksi, yang menjalankan fungsinya sesuai anggaran dasar dan peraturan yang berlaku.
 
-## Kode etik
+### Kode etik
 
 Seluruh insan perusahaan wajib mematuhi kode etik yang mengatur perilaku, benturan kepentingan, gratifikasi, dan kerahasiaan informasi.
