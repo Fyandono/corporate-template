@@ -2,6 +2,9 @@
 title: Sustainability
 description: The company's commitment to environmental, social, and governance (ESG) practices.
 updatedAt: 2026-09-28
+image: ../../../assets/photos/rice-terraces.jpg
+imageAlt: Rice terraces and coconut palms in Bali seen from the air
+imageCaption: Ubud, Bali
 ---
 
 Sustainability is part of our business strategy. We strive to create long-term value for shareholders, society, and the environment.

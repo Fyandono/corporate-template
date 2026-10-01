@@ -16,9 +16,9 @@ const isActive = (path: string) => currentPath === path || currentPath.startsWit
 
 <header
   data-site-header
-  class="group data-scrolled:text-primary-900 fixed inset-x-0 top-0 z-50 text-white transition-[background-color,color,box-shadow] duration-300 data-scrolled:bg-white/95 data-scrolled:shadow-[0_1px_0_0_var(--color-neutral-200)] data-scrolled:backdrop-blur"
+  class="group data-scrolled:text-primary-900 fixed inset-x-0 top-0 z-50 text-white transition duration-300 data-scrolled:bg-white/95 data-scrolled:shadow-hairline data-scrolled:backdrop-blur"
 >
-  <Container class="flex h-16 items-center justify-between gap-6">
+  <Container class="flex h-header items-center justify-between gap-6">
     <a href={localizedPath(lang)} class="shrink-0" aria-label={`${dict.nav.home}`}>
       <Logo name={site.shortName} />
     </a>
@@ -30,7 +30,7 @@ const isActive = (path: string) => currentPath === path || currentPath.startsWit
             <a
               href={localizedPath(lang, item.path)}
               aria-current={isActive(item.path) ? 'page' : undefined}
-              class="aria-[current=page]:after:bg-accent-500 relative block px-3 py-2 text-sm font-medium opacity-85 transition-opacity after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:bg-transparent hover:opacity-100 aria-[current=page]:opacity-100"
+              class="current:after:bg-accent-500 relative block px-3 py-2 text-small font-medium opacity-85 transition-opacity after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:bg-transparent hover:opacity-100 current:opacity-100"
             >
               {dict.nav[item.key]}
             </a>
@@ -62,7 +62,7 @@ const isActive = (path: string) => currentPath === path || currentPath.startsWit
   aria-label={dict.common.mainNav}
   class="bg-primary-950 backdrop:bg-primary-950/60 m-0 ml-auto h-dvh max-h-none w-full max-w-sm p-0 text-white"
 >
-  <div class="flex h-16 items-center justify-between px-4 sm:px-6">
+  <div class="flex h-header items-center justify-between px-4 sm:px-6">
     <Logo name={site.shortName} />
     <button
       type="button"
@@ -82,7 +82,7 @@ const isActive = (path: string) => currentPath === path || currentPath.startsWit
           <a
             href={localizedPath(lang, item.path)}
             aria-current={isActive(item.path) ? 'page' : undefined}
-            class="aria-[current=page]:text-accent-400 flex min-h-14 items-center text-lg font-medium"
+            class="current:text-accent-400 flex min-h-14 items-center text-body-lg font-medium"
           >
             {dict.nav[item.key]}
           </a>

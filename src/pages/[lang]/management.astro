@@ -1,22 +1,15 @@
 ---
-import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
+import ManagementSection from '../../components/sections/ManagementSection.tsx';
 import PageHero from '../../components/sections/PageHero.tsx';
-import Container from '../../components/ui/Container.astro';
-import SectionHeading from '../../components/ui/SectionHeading.tsx';
-import { getLangPaths, getLocale, localize, localizedPath, t } from '../../i18n';
+import { getLangPaths, getLocale, localizedPath, t } from '../../i18n';
+import { loadManagement } from '../../lib/sections/management';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 export const getStaticPaths = () => getLangPaths();
 const lang = getLocale(Astro.params.lang);
 const dict = t(lang);
 const page = dict.management;
-
-const people = (await getCollection('management')).sort((a, b) => a.data.order - b.data.order);
-const groups = [
-  { key: 'commissioner', title: page.commissioners },
-  { key: 'director', title: page.directors },
-] as const;
+const section = await loadManagement(lang);
 
 const breadcrumbs = [
   { name: dict.nav.home, path: localizedPath(lang) },
@@ -31,49 +24,5 @@ const breadcrumbs = [
     breadcrumbs={breadcrumbs}
     breadcrumbLabel={dict.common.breadcrumb}
   />
-
-  {groups.map((group, gi) => (
-    <section aria-labelledby={`group-${group.key}`} class:list={[gi % 2 === 1 && 'bg-neutral-50']}>
-      <Container class="py-20 md:py-24">
-        <SectionHeading id={`group-${group.key}`} title={group.title} />
-        <ul class="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4" data-reveal-group>
-          {people
-            .filter((p) => p.data.group === group.key)
-            .map((person) => (
-              <li data-reveal>
-                <div class="rounded-card aspect-[3/4] overflow-hidden bg-neutral-100">
-                  <Image
-                    src={person.data.photo}
-                    alt={person.data.name}
-                    widths={[320, 640]}
-                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                    class="size-full object-cover"
-                  />
-                </div>
-                <h3 class="mt-5 text-lg">{person.data.name}</h3>
-                <p class="text-primary-500 mt-1 text-sm font-medium">
-                  {localize(person.data.position, lang)}
-                </p>
-                <details class="group mt-3">
-                  <summary class="text-primary-700 inline-flex cursor-pointer list-none items-center gap-1 text-sm font-semibold [&::-webkit-details-marker]:hidden">
-                    {page.viewProfile}
-                    <svg
-                      viewBox="0 0 16 16"
-                      class="size-4 transition-transform group-open:rotate-180"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" />
-                    </svg>
-                  </summary>
-                  <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                    {localize(person.data.bio, lang)}
-                  </p>
-                </details>
-              </li>
-            ))}
-        </ul>
-      </Container>
-    </section>
-  ))}
+  <ManagementSection {...section} />
 </BaseLayout>

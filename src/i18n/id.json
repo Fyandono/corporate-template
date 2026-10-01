@@ -48,7 +48,6 @@
     "statsNote": "Data per 31 Desember 2025",
     "businessEyebrow": "Lini Bisnis",
     "businessTitle": "Portofolio yang menopang perekonomian",
-    "statementEyebrow": "Visi",
     "statement": "Menjadi perusahaan kelas dunia yang menjadi kebanggaan bangsa dan memberi nilai tambah bagi Indonesia.",
     "newsEyebrow": "Kabar Terbaru",
     "newsTitle": "Berita & siaran pers",
@@ -85,7 +84,8 @@
     "lead": "Dipimpin oleh jajaran profesional yang berpengalaman dan berintegritas.",
     "commissioners": "Dewan Komisaris",
     "directors": "Direksi",
-    "viewProfile": "Lihat profil"
+    "viewProfile": "Lihat profil",
+    "messageEyebrow": "Sambutan Direktur Utama"
   },
   "business": {
     "title": "Lini Bisnis",

@@ -21,6 +21,36 @@ export const Linked = () => (
   </div>
 );
 
+export const Featured = () => (
+  <BusinessCard
+    variant="featured"
+    index={0}
+    title="Energi"
+    summary="Menjamin ketersediaan energi yang andal dan terjangkau."
+    description="Kami mengelola rantai pasok energi dari hulu ke hilir untuk mendukung ketahanan energi nasional, dengan transisi bertahap menuju energi bersih."
+    image={photo('Menara transmisi listrik saat senja', '#171717', '#525252')}
+  />
+);
+
+export const Compact = () => (
+  <div className="max-w-md divide-y divide-neutral-200 border-y border-neutral-200">
+    <BusinessCard
+      variant="compact"
+      index={1}
+      title="Infrastruktur"
+      summary="Membangun konektivitas yang menggerakkan ekonomi."
+      image={photo('Simpang susun jalan tol dari udara', '#262626', '#595959')}
+    />
+    <BusinessCard
+      variant="compact"
+      index={2}
+      title="Layanan Keuangan"
+      summary="Memperluas akses pembiayaan yang inklusif."
+      image={photo('Gedung perkantoran pada malam hari', '#1C1C1C', '#4A4A4A')}
+    />
+  </div>
+);
+
 export const Grid = () => (
   <div className="grid gap-6 sm:grid-cols-2">
     <BusinessCard

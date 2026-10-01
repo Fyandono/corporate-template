@@ -48,7 +48,6 @@
     "statsNote": "Figures as of 31 December 2025",
     "businessEyebrow": "Business Lines",
     "businessTitle": "A portfolio that powers the economy",
-    "statementEyebrow": "Vision",
     "statement": "To be a world-class company that makes the nation proud and adds value for Indonesia.",
     "newsEyebrow": "Latest",
     "newsTitle": "News & press releases",
@@ -85,7 +84,8 @@
     "lead": "Led by experienced professionals of integrity.",
     "commissioners": "Board of Commissioners",
     "directors": "Board of Directors",
-    "viewProfile": "View profile"
+    "viewProfile": "View profile",
+    "messageEyebrow": "Message from the President Director"
   },
   "business": {
     "title": "Business Lines",

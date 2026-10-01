@@ -8,7 +8,8 @@ export type NewsCardProps = {
   dateTime: string;
   /** Tanggal yang sudah diformat sesuai bahasa, mis. "12 Maret 2026". */
   dateLabel: string;
-  href: string;
+  /** Jika ada, judul menjadi link dan seluruh kartu bisa diklik. */
+  href?: string;
 };
 
 export default function NewsCard({
@@ -21,7 +22,7 @@ export default function NewsCard({
 }: NewsCardProps) {
   return (
     <article className="group relative flex flex-col" data-reveal>
-      <div className="aspect-[3/2] overflow-hidden rounded-card bg-neutral-100">
+      <div className="aspect-landscape overflow-hidden rounded-card bg-neutral-100">
         <img
           {...cover}
           loading="lazy"
@@ -35,13 +36,17 @@ export default function NewsCard({
       >
         {dateLabel}
       </time>
-      <h3 className="mt-4 text-2xl font-normal tracking-tight">
-        <a
-          href={href}
-          className="underline-offset-4 group-hover:underline after:absolute after:inset-0"
-        >
-          {title}
-        </a>
+      <h3 className="mt-4 text-title font-normal tracking-tight">
+        {href ? (
+          <a
+            href={href}
+            className="underline-offset-4 group-hover:underline after:absolute after:inset-0"
+          >
+            {title}
+          </a>
+        ) : (
+          title
+        )}
       </h3>
       <p className="mt-3 leading-relaxed text-neutral-600">{description}</p>
     </article>

@@ -7,13 +7,13 @@
 - Converter invocation: `--node-modules ./node_modules --entry ./.design-sync/pkg/dist/index.js --out ./ds-bundle`.
 - The Tailwind CSS is compiled from `src/styles/global.css` minus its fontsource `@import`. It scans `src/**` and `.design-sync/previews/**` and adds an `@source inline(...)` layout vocabulary (see `build.mjs`) so the design agent has common grid/spacing classes. The font ships via `cfg.extraFonts` (the fontsource index.css).
 - Components must stay free of `astro:*`, i18n and `site.ts` imports (plain props only), or the wrapper build breaks. Image props use the `ResponsiveImage` type in `src/components/types.ts`.
-- Astro-only pieces (Header, LanguageSwitcher, ConsentManager, SkipLink, SEO, Container.astro) are intentionally not synced.
+- Astro-only pieces (Header, LanguageSwitcher, ConsentManager, SkipLink, SEO, Container.astro, Section.astro, ProseSection.astro) are intentionally not synced. `Section.astro`/`Container.astro` share their classes with the `.tsx` versions (`sectionClasses`, `containerClass`).
 
 ## Previews
 
-- All 12 components have authored previews in `.design-sync/previews/`. Card images are inline data-URI SVGs (grayscale gradients), because repo assets aren't shipped.
+- All 29 components have authored previews in `.design-sync/previews/`. Card images and photo backdrops are inline data-URI SVGs (grayscale gradients), because repo assets (`src/assets/photos/`) aren't shipped.
 - Full-width sections and grids use `cardMode: column` (`cfg.overrides`). Hero also needs `viewport: 1280x1100` (min-h-svh plus content taller than the default cell, which otherwise crops the CTAs).
-- `ColumnLines` is decorative (aria-hidden) and is previewed inside a dark section.
+- `ColumnLines`, `Grain` and `Backdrop` are decorative (aria-hidden) and are previewed inside a section. The `grain` utility is an SVG `feTurbulence` data-URI in `global.css`, so it ships with `styles.css`.
 - `ui/` components land in group `general` (the converter treats `ui` as a generic folder name).
 
 ## Known render warns

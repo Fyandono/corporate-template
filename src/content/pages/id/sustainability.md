@@ -2,6 +2,9 @@
 title: Keberlanjutan
 description: Komitmen perusahaan terhadap lingkungan, sosial, dan tata kelola (LST).
 updatedAt: 2026-09-28
+image: ../../../assets/photos/rice-terraces.jpg
+imageAlt: Sawah terasering dan pohon kelapa di Bali dilihat dari udara
+imageCaption: Ubud, Bali
 ---
 
 Keberlanjutan merupakan bagian dari strategi bisnis kami. Kami berupaya menciptakan nilai jangka panjang bagi pemegang saham, masyarakat, dan lingkungan.

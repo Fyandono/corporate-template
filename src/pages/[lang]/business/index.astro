@@ -1,29 +1,16 @@
 ---
-import { getCollection } from 'astro:content';
-import BusinessCard from '../../../components/sections/BusinessCard.tsx';
+import BusinessSection from '../../../components/sections/BusinessSection.tsx';
 import PageHero from '../../../components/sections/PageHero.tsx';
-import Container from '../../../components/ui/Container.astro';
-import { site } from '../../../config/site';
 import { getLangPaths, getLocale, localizedPath, t } from '../../../i18n';
-import { businessCardProps } from '../../../lib/cards';
+import { loadBusiness } from '../../../lib/sections/business';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 
 export const getStaticPaths = () => getLangPaths();
 const lang = getLocale(Astro.params.lang);
 const dict = t(lang);
 const page = dict.business;
+const section = await loadBusiness(lang);
 
-const business = (await getCollection('business')).sort((a, b) => a.data.order - b.data.order);
-const cards = await Promise.all(
-  business.map((entry, i) =>
-    businessCardProps(
-      entry,
-      lang,
-      i,
-      site.features.businessDetailPages ? localizedPath(lang, `/business/${entry.id}`) : undefined,
-    ),
-  ),
-);
 const breadcrumbs = [
   { name: dict.nav.home, path: localizedPath(lang) },
   { name: page.title, path: localizedPath(lang, '/business') },
@@ -37,11 +24,5 @@ const breadcrumbs = [
     breadcrumbs={breadcrumbs}
     breadcrumbLabel={dict.common.breadcrumb}
   />
-  <Container class="py-20 md:py-28">
-    <div class="grid gap-6 sm:grid-cols-2" data-reveal-group>
-      {cards.map((card) => (
-        <BusinessCard {...card} />
-      ))}
-    </div>
-  </Container>
+  <BusinessSection {...section} />
 </BaseLayout>

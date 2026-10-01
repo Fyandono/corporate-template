@@ -1,5 +1,7 @@
 import Container from '../ui/Container';
+import Grain from '../ui/Grain';
 import Logo from '../ui/Logo';
+import NusantaraPattern from '../ui/NusantaraPattern';
 
 type Link = { label: string; href: string };
 
@@ -30,14 +32,16 @@ export type FooterProps = {
 
 export default function Footer(props: FooterProps) {
   return (
-    <footer className="bg-primary-950 text-primary-100">
+    <footer className="relative isolate overflow-hidden bg-primary-950 text-primary-100">
+      <NusantaraPattern fade="left" />
+      <Grain />
       <Container className="grid gap-12 py-16 md:grid-cols-12 lg:py-20">
         <div className="md:col-span-5">
           <a href={props.homeHref} className="inline-block text-white" aria-label={props.homeLabel}>
             <Logo name={props.brandName} />
           </a>
-          <p className="mt-6 max-w-sm text-sm leading-relaxed">{props.tagline}</p>
-          <address className="mt-6 text-sm leading-relaxed not-italic">
+          <p className="mt-6 max-w-sm text-small leading-relaxed">{props.tagline}</p>
+          <address className="mt-6 text-small leading-relaxed not-italic">
             <strong className="block font-semibold text-white">{props.legalName}</strong>
             {props.addressLines.map((line) => (
               <span key={line} className="block">
@@ -48,7 +52,7 @@ export default function Footer(props: FooterProps) {
         </div>
 
         <nav aria-label={props.mainNavLabel} className="md:col-span-3">
-          <ul className="space-y-3 text-sm">
+          <ul className="space-y-3 text-small">
             {props.mainNav.map((item) => (
               <li key={item.href}>
                 <a href={item.href} className="transition-colors hover:text-white">
@@ -60,8 +64,8 @@ export default function Footer(props: FooterProps) {
         </nav>
 
         <div className="md:col-span-4">
-          <p className="text-sm font-semibold text-white">{props.followUsLabel}</p>
-          <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-3 text-sm">
+          <p className="text-small font-semibold text-white">{props.followUsLabel}</p>
+          <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-3 text-small">
             {props.social.map((item) => (
               <li key={item.href}>
                 <a
@@ -76,7 +80,7 @@ export default function Footer(props: FooterProps) {
               </li>
             ))}
           </ul>
-          <dl className="mt-8 space-y-2 text-sm">
+          <dl className="mt-8 space-y-2 text-small">
             <div className="flex gap-2">
               <dt className="sr-only">{props.phoneLabel}</dt>
               <dd>
@@ -98,7 +102,7 @@ export default function Footer(props: FooterProps) {
       </Container>
 
       <div className="border-t border-white/10">
-        <Container className="flex flex-col gap-4 py-6 text-xs md:flex-row md:items-center md:justify-between">
+        <Container className="flex flex-col gap-4 py-6 text-caption md:flex-row md:items-center md:justify-between">
           <p>{props.copyright}</p>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             {props.legalNav.map((item) => (

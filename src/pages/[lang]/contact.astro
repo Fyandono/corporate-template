@@ -1,18 +1,15 @@
 ---
-import { Image } from 'astro:assets';
-import mapImage from '../../assets/placeholders/map.svg';
+import ContactSection from '../../components/sections/ContactSection.tsx';
 import PageHero from '../../components/sections/PageHero.tsx';
-import Button from '../../components/ui/Button.tsx';
-import Container from '../../components/ui/Container.astro';
-import { site } from '../../config/site';
-import { getLangPaths, getLocale, localize, localizedPath, t } from '../../i18n';
+import { getLangPaths, getLocale, localizedPath, t } from '../../i18n';
+import { loadContact } from '../../lib/sections/contact';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 export const getStaticPaths = () => getLangPaths();
 const lang = getLocale(Astro.params.lang);
 const dict = t(lang);
 const page = dict.contact;
-const { address, phone, email, hours, mapsUrl } = site.contact;
+const section = await loadContact(lang);
 
 const breadcrumbs = [
   { name: dict.nav.home, path: localizedPath(lang) },
@@ -27,68 +24,5 @@ const breadcrumbs = [
     breadcrumbs={breadcrumbs}
     breadcrumbLabel={dict.common.breadcrumb}
   />
-
-  <Container class="grid gap-12 py-20 md:py-28 lg:grid-cols-12">
-    <div class="lg:col-span-5" data-reveal>
-      <h2 class="text-2xl">{page.office}</h2>
-      <address class="mt-4 text-lg leading-relaxed text-neutral-600 not-italic">
-        <strong class="text-primary-900 block">{site.legalName}</strong>
-        {address.street}
-        <br />
-        {address.city}, {address.region} {address.postalCode}
-      </address>
-
-      <dl class="mt-10 divide-y divide-neutral-200 border-y border-neutral-200">
-        <div class="grid gap-1 py-5 sm:grid-cols-3">
-          <dt class="text-sm font-semibold text-neutral-500">{page.phone}</dt>
-          <dd class="sm:col-span-2">
-            <a href={`tel:${phone.replace(/\s/g, '')}`} class="text-primary-700 hover:underline">
-              {phone}
-            </a>
-          </dd>
-        </div>
-        <div class="grid gap-1 py-5 sm:grid-cols-3">
-          <dt class="text-sm font-semibold text-neutral-500">{page.email}</dt>
-          <dd class="sm:col-span-2">
-            <a href={`mailto:${email}`} class="text-primary-700 break-all hover:underline">
-              {email}
-            </a>
-          </dd>
-        </div>
-        <div class="grid gap-1 py-5 sm:grid-cols-3">
-          <dt class="text-sm font-semibold text-neutral-500">{page.hours}</dt>
-          <dd class="sm:col-span-2">{localize(hours, lang)}</dd>
-        </div>
-      </dl>
-    </div>
-
-    <div class="lg:col-span-7" data-reveal>
-      <!-- Peta statis + tautan (tanpa iframe Google Maps → tanpa cookie pihak ketiga). -->
-      <a
-        href={mapsUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group rounded-card block overflow-hidden border border-neutral-200"
-      >
-        <Image
-          src={mapImage}
-          alt={page.mapAlt}
-          class="w-full transition-transform duration-700 group-hover:scale-[1.02]"
-        />
-        <span class="sr-only">
-          {page.openMaps} {dict.common.opensInNewTab}
-        </span>
-      </a>
-      <Button
-        href={mapsUrl}
-        variant="secondary"
-        className="mt-6"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {page.openMaps}
-        <span class="sr-only">{dict.common.opensInNewTab}</span>
-      </Button>
-    </div>
-  </Container>
+  <ContactSection {...section} />
 </BaseLayout>

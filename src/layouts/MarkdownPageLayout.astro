@@ -2,10 +2,16 @@
 import { getEntry, render } from 'astro:content';
 import PageHero from '../components/sections/PageHero.tsx';
 import Container from '../components/ui/Container.astro';
+import PhotoFigure from '../components/ui/PhotoFigure.tsx';
 import { formatDate, localizedPath, t, type Locale } from '../i18n';
+import { responsiveImage } from '../lib/image';
 import BaseLayout from './BaseLayout.astro';
 
-/** Halaman teks dari src/content/pages/<lang>/<slug>.md */
+/**
+ * Halaman teks dari src/content/pages/<lang>/<slug>.md.
+ * Bila frontmatter memuat `image`, foto tampil di kolom kiri dan teks di kanan;
+ * tanpa foto, teks berada di satu kolom sempit di tengah.
+ */
 type Props = { lang: Locale; slug: string };
 const { lang, slug } = Astro.props;
 const dict = t(lang);
@@ -13,6 +19,16 @@ const dict = t(lang);
 const entry = await getEntry('pages', `${lang}/${slug}`);
 if (!entry) throw new Error(`Konten tidak ditemukan: src/content/pages/${lang}/${slug}.md`);
 const { Content } = await render(entry);
+const { image, imageAlt, imageCaption } = entry.data;
+const figure = image && {
+  image: await responsiveImage(
+    image,
+    imageAlt ?? '',
+    '(min-width: 1024px) 33vw, 100vw',
+    [480, 800, 1200],
+  ),
+  caption: imageCaption,
+};
 
 const breadcrumbs = [
   { name: dict.nav.home, path: localizedPath(lang) },
@@ -33,15 +49,18 @@ const breadcrumbs = [
     breadcrumbLabel={dict.common.breadcrumb}
   />
   <Container class="py-16 md:py-24">
-    <div class="mx-auto max-w-3xl">
-      <p class="text-sm text-neutral-500">
-        {dict.common.lastUpdated}:
-        <time datetime={entry.data.updatedAt.toISOString()}>
-          {formatDate(entry.data.updatedAt, lang)}
-        </time>
-      </p>
-      <div class="prose-content mt-8">
-        <Content />
+    <div class:list={[figure ? 'grid gap-12 lg:grid-cols-12' : 'mx-auto max-w-3xl']}>
+      {figure && <PhotoFigure {...figure} ratio="card" className="lg:col-span-4" />}
+      <div class:list={[figure && 'lg:col-span-7 lg:col-start-6']}>
+        <p class="text-small text-neutral-500">
+          {dict.common.lastUpdated}:
+          <time datetime={entry.data.updatedAt.toISOString()}>
+            {formatDate(entry.data.updatedAt, lang)}
+          </time>
+        </p>
+        <div class="prose-content mt-8" data-reveal>
+          <Content />
+        </div>
       </div>
     </div>
   </Container>

@@ -2,6 +2,9 @@
 title: Corporate Governance
 description: The company's commitment to Good Corporate Governance.
 updatedAt: 2026-09-28
+image: ../../../assets/photos/towers.jpg
+imageAlt: Facades of high-rise office buildings in Jakarta
+imageCaption: Jakarta
 ---
 
 The company is committed to consistently applying the principles of **Good Corporate Governance (GCG)** across all of its business activities.

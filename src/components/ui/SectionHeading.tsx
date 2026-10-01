@@ -1,4 +1,5 @@
 import { cx } from '../cx';
+import Eyebrow from './Eyebrow';
 
 export type SectionHeadingProps = {
   eyebrow?: string;
@@ -32,21 +33,13 @@ export default function SectionHeading({
       data-reveal
     >
       {(eyebrow || index) && (
-        <p
-          className={cx(
-            'mb-6 flex items-center gap-4 text-eyebrow font-semibold uppercase',
-            dark ? 'text-accent-400' : 'text-primary-500',
-            align === 'center' && 'justify-center',
-          )}
+        <Eyebrow
+          index={index}
+          tone={tone}
+          className={cx('mb-6', align === 'center' && 'justify-center')}
         >
-          {index && (
-            <span className={cx('tabular-nums', dark ? 'text-white' : 'text-primary-900')}>
-              {index}
-            </span>
-          )}
-          <span className="h-px w-10 bg-current opacity-50" aria-hidden="true" />
           {eyebrow}
-        </p>
+        </Eyebrow>
       )}
       <Tag id={id} className={cx('text-headline font-normal', dark && 'text-white')}>
         {title}

@@ -13,3 +13,14 @@ export const OnDarkSection = () => (
     </Container>
   </section>
 );
+
+export const OnLightSection = () => (
+  <section className="relative isolate overflow-hidden bg-white">
+    <ColumnLines tone="light" />
+    <Container className="py-24">
+      <p className="max-w-3xl font-serif text-headline font-light text-primary-900">
+        Di section terang garisnya sangat samar — cukup sebagai struktur.
+      </p>
+    </Container>
+  </section>
+);

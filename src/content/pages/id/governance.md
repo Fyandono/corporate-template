@@ -2,6 +2,9 @@
 title: Tata Kelola Perusahaan
 description: Komitmen perusahaan terhadap penerapan Good Corporate Governance.
 updatedAt: 2026-09-28
+image: ../../../assets/photos/towers.jpg
+imageAlt: Fasad gedung perkantoran bertingkat di Jakarta
+imageCaption: Jakarta
 ---
 
 Perusahaan berkomitmen menerapkan prinsip-prinsip **Good Corporate Governance (GCG)** secara konsisten dalam seluruh kegiatan usaha.

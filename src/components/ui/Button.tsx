@@ -21,7 +21,7 @@ export default function Button({ variant = 'primary', className, children, ...re
   return (
     <a
       className={cx(
-        'group inline-flex min-h-13 items-center justify-center gap-3 rounded-card px-7 text-sm font-medium tracking-wide transition-colors duration-200',
+        'group inline-flex min-h-13 items-center justify-center gap-3 rounded-card px-7 text-small font-medium tracking-wide transition-colors duration-200',
         variants[variant],
         className,
       )}

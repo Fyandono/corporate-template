@@ -1,5 +1,8 @@
+import type { ResponsiveImage } from '../types';
+import Backdrop from '../ui/Backdrop';
 import ColumnLines from '../ui/ColumnLines';
 import Container from '../ui/Container';
+import Grain from '../ui/Grain';
 import NusantaraPattern from '../ui/NusantaraPattern';
 
 export type Crumb = { name: string; path: string };
@@ -11,16 +14,31 @@ export type PageHeroProps = {
   breadcrumbs: Crumb[];
   /** Label aksesibel untuk `<nav>` breadcrumb. */
   breadcrumbLabel: string;
+  /** Foto latar opsional. Tanpa foto, hero memakai gradien + motif kawung + grain. */
+  image?: ResponsiveImage;
 };
 
 /** Hero halaman dalam (bukan homepage). Berisi `<h1>`. */
-export default function PageHero({ title, lead, breadcrumbs, breadcrumbLabel }: PageHeroProps) {
+export default function PageHero({
+  title,
+  lead,
+  breadcrumbs,
+  breadcrumbLabel,
+  image,
+}: PageHeroProps) {
   return (
     <section className="relative isolate overflow-hidden bg-primary-950 text-white">
-      <div className="absolute inset-0 -z-20" aria-hidden="true">
-        <div className="absolute inset-0 bg-linear-to-b from-primary-900 to-primary-950" />
-      </div>
-      <NusantaraPattern fade="right" />
+      {image ? (
+        <Backdrop image={image} vignette="left" priority />
+      ) : (
+        <>
+          <div className="absolute inset-0 -z-20" aria-hidden="true">
+            <div className="absolute inset-0 bg-linear-to-b from-primary-900 to-primary-950" />
+          </div>
+          <NusantaraPattern fade="right" />
+          <Grain />
+        </>
+      )}
       <ColumnLines />
       <Container className="pt-40 pb-20 md:pt-52 md:pb-28">
         <nav aria-label={breadcrumbLabel} data-reveal>

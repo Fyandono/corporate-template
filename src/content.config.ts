@@ -15,6 +15,8 @@ const management = defineCollection({
       bio: localized,
       photo: image(),
       order: z.number().int(),
+      /** Kutipan sambutan; orang pertama (menurut `order`) yang mengisinya tampil sebagai sambutan pimpinan. */
+      message: localized.optional(),
     }),
 });
 
@@ -41,14 +43,26 @@ const values = defineCollection({
   schema: z.object({ title: localized, description: localized, order: z.number().int() }),
 });
 
-/** Halaman teks (legal, tata kelola, keberlanjutan). Path: pages/<lang>/<slug>.md */
+/**
+ * Halaman teks (legal, tata kelola, keberlanjutan). Path: pages/<lang>/<slug>.md
+ * `image` opsional: foto di samping teks section beranda; bila diisi, `imageAlt` wajib.
+ */
 const pages = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/pages' }),
-  schema: z.object({
-    title: z.string().min(1),
-    description: z.string().min(1),
-    updatedAt: z.coerce.date(),
-  }),
+  schema: ({ image }) =>
+    z
+      .object({
+        title: z.string().min(1),
+        description: z.string().min(1),
+        updatedAt: z.coerce.date(),
+        image: image().optional(),
+        imageAlt: z.string().min(1).optional(),
+        imageCaption: z.string().min(1).optional(),
+      })
+      .refine((data) => !data.image || data.imageAlt, {
+        message: '`imageAlt` wajib diisi bila `image` dipakai',
+        path: ['imageAlt'],
+      }),
 });
 
 /** Berita. Path: news/<lang>/<slug>.md; `translationKey` menghubungkan versi ID dan EN. */

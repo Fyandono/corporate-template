@@ -1,13 +1,14 @@
 import { cx } from '../cx';
 
 export type LogoProps = {
-  /** Nama singkat perusahaan di samping monogram. */
+  /** Nama singkat perusahaan di samping logo. */
   name: string;
   className?: string;
 };
 
 /**
- * Logo placeholder. Ganti dengan SVG logo klien (gunakan `currentColor` agar mengikuti warna teks induk).
+ * Logo placeholder: kotak kosong bersudut membulat sebagai penanda tempat logo. Ganti dengan
+ * SVG logo klien (gunakan `currentColor` agar mengikuti warna teks induk).
  */
 export default function Logo({ name, className }: LogoProps) {
   return (
@@ -18,15 +19,13 @@ export default function Logo({ name, className }: LogoProps) {
           y="1"
           width="38"
           height="38"
-          rx="4"
+          rx="8"
           fill="none"
           stroke="currentColor"
-          strokeWidth="2"
+          strokeWidth="1.5"
         />
-        <path d="M11 29V11l9 11 9-11v18" fill="none" stroke="currentColor" strokeWidth="2.5" />
-        <circle cx="20" cy="31" r="2" className="fill-accent-500" />
       </svg>
-      <span className="text-base leading-tight font-bold tracking-tight">{name}</span>
+      <span className="text-body leading-tight font-bold tracking-tight">{name}</span>
     </span>
   );
 }

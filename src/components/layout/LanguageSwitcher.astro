@@ -6,7 +6,7 @@ const { lang, alternates, class: className } = Astro.props;
 ---
 
 <nav aria-label={t(lang).common.language} class={className}>
-  <ul class="flex items-center gap-1 text-sm font-semibold">
+  <ul class="flex items-center gap-1 text-small font-semibold">
     {locales.map((locale, i) => (
       <li class="flex items-center gap-1">
         {i > 0 && (
@@ -23,6 +23,7 @@ const { lang, alternates, class: className } = Astro.props;
         ) : (
           <a
             href={alternates[locale]}
+            data-lang-link
             hreflang={locale}
             lang={locale}
             aria-label={localeMeta[locale].name}
